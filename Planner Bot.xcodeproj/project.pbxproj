@@ -1,0 +1,457 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B56C7FD62C040DC1001DA721 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56C7FD52C040DC1001DA721 /* Events.swift */; };
+		B58598FE2C0807CF002238CB /* CreateEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58598FD2C0807CF002238CB /* CreateEventView.swift */; };
+		B5877C7E2C0503F3009759B2 /* EventPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5877C7D2C0503F3009759B2 /* EventPreviewView.swift */; };
+		B5963B1E2BFFC7F900C6C468 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5963B1D2BFFC7F900C6C468 /* ViewModel.swift */; };
+		B5963B212BFFC83800C6C468 /* Keyvault Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5963B202BFFC83800C6C468 /* Keyvault Service.swift */; };
+		B5963B232BFFC84900C6C468 /* Bot Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5963B222BFFC84900C6C468 /* Bot Service.swift */; };
+		B5963B262BFFD03500C6C468 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5963B252BFFD03500C6C468 /* LoginView.swift */; };
+		B5963B282BFFD07300C6C468 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5963B272BFFD07300C6C468 /* Constants.swift */; };
+		B5963B2A2BFFD40000C6C468 /* PlannerBotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5963B292BFFD40000C6C468 /* PlannerBotView.swift */; };
+		B5963B2D2BFFDDFE00C6C468 /* Cached Image Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5963B2C2BFFDDFE00C6C468 /* Cached Image Service.swift */; };
+		B5963B302BFFDEEE00C6C468 /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5963B2F2BFFDEEE00C6C468 /* UserProfileView.swift */; };
+		B5963B332BFFE4AB00C6C468 /* Discord User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5963B322BFFE4AB00C6C468 /* Discord User.swift */; };
+		B5E9614C2BFF93B9006FDDD1 /* Planner_BotApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E9614B2BFF93B9006FDDD1 /* Planner_BotApp.swift */; };
+		B5E9614E2BFF93B9006FDDD1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E9614D2BFF93B9006FDDD1 /* ContentView.swift */; };
+		B5E961502BFF93BA006FDDD1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5E9614F2BFF93BA006FDDD1 /* Assets.xcassets */; };
+		B5E961532BFF93BA006FDDD1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5E961522BFF93BA006FDDD1 /* Preview Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		B56C7FD52C040DC1001DA721 /* Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
+		B58598FD2C0807CF002238CB /* CreateEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventView.swift; sourceTree = "<group>"; };
+		B5877C7D2C0503F3009759B2 /* EventPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPreviewView.swift; sourceTree = "<group>"; };
+		B594304D2C0F84F10002F9A3 /* Planner-Bot-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Planner-Bot-Info.plist"; sourceTree = SOURCE_ROOT; };
+		B5963B1D2BFFC7F900C6C468 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		B5963B202BFFC83800C6C468 /* Keyvault Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Keyvault Service.swift"; sourceTree = "<group>"; };
+		B5963B222BFFC84900C6C468 /* Bot Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bot Service.swift"; sourceTree = "<group>"; };
+		B5963B252BFFD03500C6C468 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		B5963B272BFFD07300C6C468 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		B5963B292BFFD40000C6C468 /* PlannerBotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerBotView.swift; sourceTree = "<group>"; };
+		B5963B2C2BFFDDFE00C6C468 /* Cached Image Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Cached Image Service.swift"; sourceTree = "<group>"; };
+		B5963B2F2BFFDEEE00C6C468 /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
+		B5963B322BFFE4AB00C6C468 /* Discord User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Discord User.swift"; sourceTree = "<group>"; };
+		B5E961482BFF93B9006FDDD1 /* Planner Bot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Planner Bot.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5E9614B2BFF93B9006FDDD1 /* Planner_BotApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Planner_BotApp.swift; sourceTree = "<group>"; };
+		B5E9614D2BFF93B9006FDDD1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		B5E9614F2BFF93BA006FDDD1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B5E961522BFF93BA006FDDD1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B5E961452BFF93B9006FDDD1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B5877C7C2C050304009759B2 /* Event */ = {
+			isa = PBXGroup;
+			children = (
+				B5877C7D2C0503F3009759B2 /* EventPreviewView.swift */,
+				B58598FD2C0807CF002238CB /* CreateEventView.swift */,
+			);
+			path = Event;
+			sourceTree = "<group>";
+		};
+		B5963B1F2BFFC82100C6C468 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				B5963B312BFFE49E00C6C468 /* Data */,
+				B5963B2B2BFFDDEB00C6C468 /* Services */,
+				B5963B272BFFD07300C6C468 /* Constants.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		B5963B242BFFD02800C6C468 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B5877C7C2C050304009759B2 /* Event */,
+				B5963B2E2BFFDEDF00C6C468 /* User */,
+				B5963B292BFFD40000C6C468 /* PlannerBotView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B5963B2B2BFFDDEB00C6C468 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				B5963B202BFFC83800C6C468 /* Keyvault Service.swift */,
+				B5963B222BFFC84900C6C468 /* Bot Service.swift */,
+				B5963B2C2BFFDDFE00C6C468 /* Cached Image Service.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		B5963B2E2BFFDEDF00C6C468 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				B5963B252BFFD03500C6C468 /* LoginView.swift */,
+				B5963B2F2BFFDEEE00C6C468 /* UserProfileView.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		B5963B312BFFE49E00C6C468 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				B5963B322BFFE4AB00C6C468 /* Discord User.swift */,
+				B56C7FD52C040DC1001DA721 /* Events.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		B5E9613F2BFF93B9006FDDD1 = {
+			isa = PBXGroup;
+			children = (
+				B5963B1F2BFFC82100C6C468 /* Shared */,
+				B5E9614A2BFF93B9006FDDD1 /* Planner Bot */,
+				B5E961492BFF93B9006FDDD1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B5E961492BFF93B9006FDDD1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B5E961482BFF93B9006FDDD1 /* Planner Bot.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B5E9614A2BFF93B9006FDDD1 /* Planner Bot */ = {
+			isa = PBXGroup;
+			children = (
+				B594304D2C0F84F10002F9A3 /* Planner-Bot-Info.plist */,
+				B5963B242BFFD02800C6C468 /* Views */,
+				B5963B1D2BFFC7F900C6C468 /* ViewModel.swift */,
+				B5E9614B2BFF93B9006FDDD1 /* Planner_BotApp.swift */,
+				B5E9614D2BFF93B9006FDDD1 /* ContentView.swift */,
+				B5E9614F2BFF93BA006FDDD1 /* Assets.xcassets */,
+				B5E961512BFF93BA006FDDD1 /* Preview Content */,
+			);
+			path = "Planner Bot";
+			sourceTree = "<group>";
+		};
+		B5E961512BFF93BA006FDDD1 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				B5E961522BFF93BA006FDDD1 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B5E961472BFF93B9006FDDD1 /* Planner Bot */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B5E961562BFF93BA006FDDD1 /* Build configuration list for PBXNativeTarget "Planner Bot" */;
+			buildPhases = (
+				B5E961442BFF93B9006FDDD1 /* Sources */,
+				B5E961452BFF93B9006FDDD1 /* Frameworks */,
+				B5E961462BFF93B9006FDDD1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Planner Bot";
+			productName = "Planner Bot";
+			productReference = B5E961482BFF93B9006FDDD1 /* Planner Bot.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B5E961402BFF93B9006FDDD1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1540;
+				LastUpgradeCheck = 1540;
+				TargetAttributes = {
+					B5E961472BFF93B9006FDDD1 = {
+						CreatedOnToolsVersion = 15.4;
+					};
+				};
+			};
+			buildConfigurationList = B5E961432BFF93B9006FDDD1 /* Build configuration list for PBXProject "Planner Bot" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B5E9613F2BFF93B9006FDDD1;
+			productRefGroup = B5E961492BFF93B9006FDDD1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B5E961472BFF93B9006FDDD1 /* Planner Bot */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B5E961462BFF93B9006FDDD1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5E961532BFF93BA006FDDD1 /* Preview Assets.xcassets in Resources */,
+				B5E961502BFF93BA006FDDD1 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B5E961442BFF93B9006FDDD1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B56C7FD62C040DC1001DA721 /* Events.swift in Sources */,
+				B5963B262BFFD03500C6C468 /* LoginView.swift in Sources */,
+				B5E9614E2BFF93B9006FDDD1 /* ContentView.swift in Sources */,
+				B5963B2D2BFFDDFE00C6C468 /* Cached Image Service.swift in Sources */,
+				B5963B1E2BFFC7F900C6C468 /* ViewModel.swift in Sources */,
+				B5963B332BFFE4AB00C6C468 /* Discord User.swift in Sources */,
+				B5E9614C2BFF93B9006FDDD1 /* Planner_BotApp.swift in Sources */,
+				B5963B302BFFDEEE00C6C468 /* UserProfileView.swift in Sources */,
+				B5963B282BFFD07300C6C468 /* Constants.swift in Sources */,
+				B5877C7E2C0503F3009759B2 /* EventPreviewView.swift in Sources */,
+				B5963B212BFFC83800C6C468 /* Keyvault Service.swift in Sources */,
+				B5963B232BFFC84900C6C468 /* Bot Service.swift in Sources */,
+				B5963B2A2BFFD40000C6C468 /* PlannerBotView.swift in Sources */,
+				B58598FE2C0807CF002238CB /* CreateEventView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		B5E961542BFF93BA006FDDD1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		B5E961552BFF93BA006FDDD1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B5E961572BFF93BA006FDDD1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Planner Bot/Preview Content\"";
+				DEVELOPMENT_TEAM = 6M38R97L4D;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Planner-Bot-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Planner Bot";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "zgamelogic.Planner-Bot";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B5E961582BFF93BA006FDDD1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Planner Bot/Preview Content\"";
+				DEVELOPMENT_TEAM = 6M38R97L4D;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Planner-Bot-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Planner Bot";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "zgamelogic.Planner-Bot";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B5E961432BFF93B9006FDDD1 /* Build configuration list for PBXProject "Planner Bot" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B5E961542BFF93BA006FDDD1 /* Debug */,
+				B5E961552BFF93BA006FDDD1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B5E961562BFF93BA006FDDD1 /* Build configuration list for PBXNativeTarget "Planner Bot" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B5E961572BFF93BA006FDDD1 /* Debug */,
+				B5E961582BFF93BA006FDDD1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B5E961402BFF93B9006FDDD1 /* Project object */;
+}
