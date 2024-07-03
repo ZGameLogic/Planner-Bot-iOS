@@ -32,6 +32,14 @@ struct EventPreviewView: View {
                     ForEach(event.users.sorted{$0.status < $1.status}){user in
                         userListView(user).foregroundStyle(user.statusColor)
                     }
+                } else {
+                    ScrollView(.horizontal) {
+                        HStack {
+                            ForEach(event.users.filter{$0.status == .accepted}){user in
+                                userScrollView(user)
+                            }
+                        }
+                    }
                 }
                 HStack{
                     Spacer()
@@ -41,7 +49,7 @@ struct EventPreviewView: View {
                         if(showUsers){
                             Label("", systemImage: "chevron.up")
                         } else {
-                            Label("", systemImage: "chevron.down").padding(.top)
+                            Label("", systemImage: "chevron.down")
                         }
                     })
                     Spacer()
@@ -86,6 +94,24 @@ struct EventPreviewView: View {
             Text(viewModel.getUserById(userId: user.id)?.username ?? "Unknown User")
         }
     }
+    
+    func userScrollView(_ user: EventUser) -> some View {
+        let discordUser = viewModel.getUserById(userId: user.id)
+        let noUser = AnyView(Image(systemName: "person.crop.circle")
+            .resizable()
+            .scaledToFit()
+            .frame(width: 20, height: 20))
+        
+        return HStack {
+            if let discordUser = discordUser, let avatar = discordUser.avatar {
+                CachedImage(url: "https://cdn.discordapp.com/avatars/\(user.id)/\(avatar).png", loadingView: noUser)
+                    .frame(width: 20, height: 20)
+                    .cornerRadius(10)
+            } else {
+                noUser
+            }
+        }
+    }
 }
 
 struct EventPreviewSkeletonView: View {
@@ -113,8 +139,8 @@ struct EventPreviewSkeletonView: View {
 #Preview {
     EventPreviewView(event: Binding.constant(
         Event(id: 1, title: "GTFO", notes: "Lets win one boys", startTime: Date(), count: 3, authorId: 123456789, users: [
-            EventUser(id: 1, status: .deciding, isNeedFillIn: false),
-            EventUser(id: 2, status: .deciding, isNeedFillIn: false),
+            EventUser(id: 1, status: .accepted, isNeedFillIn: false),
+            EventUser(id: 2, status: .accepted, isNeedFillIn: false),
             EventUser(id: 3, status: .deciding, isNeedFillIn: false),
             EventUser(id: 4, status: .declined, isNeedFillIn: false),
             EventUser(id: 5, status: .maybe, isNeedFillIn: false),
