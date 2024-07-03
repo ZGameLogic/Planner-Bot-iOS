@@ -21,7 +21,7 @@ struct PlannerBotView: View {
                     EventPreviewSkeletonView()
                     EventPreviewSkeletonView()
                 } else if(!viewModel.loading.isFetchingUserEvents && viewModel.events.isEmpty){
-                    ContentUnavailableView("No events found", systemImage: "calendar.badge.plus", description: Text(LocalizedStringKey("no events")))
+                    ContentUnavailableView("No events found", systemImage: "calendar.badge.plus", description: Text("no_events"))
                 } else {
                     ForEach($viewModel.events){$event in
                         EventPreviewView(event: $event)

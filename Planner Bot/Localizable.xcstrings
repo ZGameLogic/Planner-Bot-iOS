@@ -1,0 +1,96 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "" : {
+
+    },
+    "@%@" : {
+
+    },
+    "%lld/%lld accepted" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld/%2$lld accepted"
+          }
+        }
+      }
+    },
+    "0/3 accepted" : {
+
+    },
+    "Add Item" : {
+
+    },
+    "Done" : {
+
+    },
+    "Error submitting event" : {
+
+    },
+    "Event notes" : {
+
+    },
+    "Form not complete" : {
+
+    },
+    "Hunt Showdown" : {
+
+    },
+    "Invitees" : {
+
+    },
+    "Limit: %@" : {
+
+    },
+    "Logout" : {
+
+    },
+    "No events found" : {
+
+    },
+    "no_events" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Es wurden keine Ereignisse gefunden. Sie können ein Ereignis mit der Schaltfläche \"Ereignis hinzufügen\" oben rechts erstellen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No events were found. You can create an event with the add event button in the top right."
+          }
+        }
+      }
+    },
+    "Okay" : {
+
+    },
+    "Plan name" : {
+
+    },
+    "Plan notes" : {
+
+    },
+    "Plan start time" : {
+
+    },
+    "Select invitees" : {
+
+    },
+    "Submit" : {
+
+    },
+    "Thursday 4/3 at 8:00pm" : {
+
+    },
+    "Upcoming events" : {
+
+    }
+  },
+  "version" : "1.0"
+}

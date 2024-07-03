@@ -20,7 +20,7 @@
 		B5963B2D2BFFDDFE00C6C468 /* Cached Image Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5963B2C2BFFDDFE00C6C468 /* Cached Image Service.swift */; };
 		B5963B302BFFDEEE00C6C468 /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5963B2F2BFFDEEE00C6C468 /* UserProfileView.swift */; };
 		B5963B332BFFE4AB00C6C468 /* Discord User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5963B322BFFE4AB00C6C468 /* Discord User.swift */; };
-		B5C85B362C35D9D0008A501F /* Strings stuff.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = B5C85B352C35D9D0008A501F /* Strings stuff.xcstrings */; };
+		B5C85B362C35D9D0008A501F /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = B5C85B352C35D9D0008A501F /* Localizable.xcstrings */; };
 		B5E9614C2BFF93B9006FDDD1 /* Planner_BotApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E9614B2BFF93B9006FDDD1 /* Planner_BotApp.swift */; };
 		B5E9614E2BFF93B9006FDDD1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E9614D2BFF93B9006FDDD1 /* ContentView.swift */; };
 		B5E961502BFF93BA006FDDD1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5E9614F2BFF93BA006FDDD1 /* Assets.xcassets */; };
@@ -42,7 +42,7 @@
 		B5963B2C2BFFDDFE00C6C468 /* Cached Image Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Cached Image Service.swift"; sourceTree = "<group>"; };
 		B5963B2F2BFFDEEE00C6C468 /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
 		B5963B322BFFE4AB00C6C468 /* Discord User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Discord User.swift"; sourceTree = "<group>"; };
-		B5C85B352C35D9D0008A501F /* Strings stuff.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = "Strings stuff.xcstrings"; sourceTree = "<group>"; };
+		B5C85B352C35D9D0008A501F /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		B5D61BA62C112C0900A59C17 /* Planner Bot.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Planner Bot.entitlements"; sourceTree = "<group>"; };
 		B5E961482BFF93B9006FDDD1 /* Planner Bot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Planner Bot.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5E9614B2BFF93B9006FDDD1 /* Planner_BotApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Planner_BotApp.swift; sourceTree = "<group>"; };
@@ -156,7 +156,7 @@
 				B5E9614D2BFF93B9006FDDD1 /* ContentView.swift */,
 				B5E9614F2BFF93BA006FDDD1 /* Assets.xcassets */,
 				B5E961512BFF93BA006FDDD1 /* Preview Content */,
-				B5C85B352C35D9D0008A501F /* Strings stuff.xcstrings */,
+				B5C85B352C35D9D0008A501F /* Localizable.xcstrings */,
 			);
 			path = "Planner Bot";
 			sourceTree = "<group>";
@@ -228,7 +228,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B5C85B362C35D9D0008A501F /* Strings stuff.xcstrings in Resources */,
+				B5C85B362C35D9D0008A501F /* Localizable.xcstrings in Resources */,
 				B5E961532BFF93BA006FDDD1 /* Preview Assets.xcassets in Resources */,
 				B5E961502BFF93BA006FDDD1 /* Assets.xcassets in Resources */,
 			);
