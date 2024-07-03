@@ -27,8 +27,7 @@ struct CreateEventView: View {
     
     var body: some View {
         Form {
-            DatePicker("Plan start time", selection: $startTime, in: Date()...)
-                .datePickerStyle(.graphical)
+            DatePicker("Plan start", selection: $startTime, in: Date()...).datePickerStyle(.compact)
             TextField("Plan name", text: $title)
             TextField("Plan notes", text: $notes)
             Stepper("Limit: \(stepperValue())", value: $count, in: 0...100)
