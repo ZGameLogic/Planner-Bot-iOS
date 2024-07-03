@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B5334B912C35ABA200595285 /* Shimmer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5334B902C35ABA200595285 /* Shimmer.swift */; };
 		B56C7FD62C040DC1001DA721 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56C7FD52C040DC1001DA721 /* Events.swift */; };
 		B58598FE2C0807CF002238CB /* CreateEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58598FD2C0807CF002238CB /* CreateEventView.swift */; };
 		B5877C7E2C0503F3009759B2 /* EventPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5877C7D2C0503F3009759B2 /* EventPreviewView.swift */; };
@@ -19,6 +20,7 @@
 		B5963B2D2BFFDDFE00C6C468 /* Cached Image Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5963B2C2BFFDDFE00C6C468 /* Cached Image Service.swift */; };
 		B5963B302BFFDEEE00C6C468 /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5963B2F2BFFDEEE00C6C468 /* UserProfileView.swift */; };
 		B5963B332BFFE4AB00C6C468 /* Discord User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5963B322BFFE4AB00C6C468 /* Discord User.swift */; };
+		B5C85B362C35D9D0008A501F /* Strings stuff.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = B5C85B352C35D9D0008A501F /* Strings stuff.xcstrings */; };
 		B5E9614C2BFF93B9006FDDD1 /* Planner_BotApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E9614B2BFF93B9006FDDD1 /* Planner_BotApp.swift */; };
 		B5E9614E2BFF93B9006FDDD1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E9614D2BFF93B9006FDDD1 /* ContentView.swift */; };
 		B5E961502BFF93BA006FDDD1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5E9614F2BFF93BA006FDDD1 /* Assets.xcassets */; };
@@ -26,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B5334B902C35ABA200595285 /* Shimmer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shimmer.swift; sourceTree = "<group>"; };
 		B56C7FD52C040DC1001DA721 /* Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
 		B58598FD2C0807CF002238CB /* CreateEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventView.swift; sourceTree = "<group>"; };
 		B5877C7D2C0503F3009759B2 /* EventPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPreviewView.swift; sourceTree = "<group>"; };
@@ -39,6 +42,7 @@
 		B5963B2C2BFFDDFE00C6C468 /* Cached Image Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Cached Image Service.swift"; sourceTree = "<group>"; };
 		B5963B2F2BFFDEEE00C6C468 /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
 		B5963B322BFFE4AB00C6C468 /* Discord User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Discord User.swift"; sourceTree = "<group>"; };
+		B5C85B352C35D9D0008A501F /* Strings stuff.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = "Strings stuff.xcstrings"; sourceTree = "<group>"; };
 		B5D61BA62C112C0900A59C17 /* Planner Bot.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Planner Bot.entitlements"; sourceTree = "<group>"; };
 		B5E961482BFF93B9006FDDD1 /* Planner Bot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Planner Bot.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5E9614B2BFF93B9006FDDD1 /* Planner_BotApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Planner_BotApp.swift; sourceTree = "<group>"; };
@@ -58,6 +62,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B5334B8F2C35AB9500595285 /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				B5334B902C35ABA200595285 /* Shimmer.swift */,
+			);
+			path = Modifiers;
+			sourceTree = "<group>";
+		};
 		B5877C7C2C050304009759B2 /* Event */ = {
 			isa = PBXGroup;
 			children = (
@@ -80,6 +92,7 @@
 		B5963B242BFFD02800C6C468 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B5334B8F2C35AB9500595285 /* Modifiers */,
 				B5877C7C2C050304009759B2 /* Event */,
 				B5963B2E2BFFDEDF00C6C468 /* User */,
 				B5963B292BFFD40000C6C468 /* PlannerBotView.swift */,
@@ -143,6 +156,7 @@
 				B5E9614D2BFF93B9006FDDD1 /* ContentView.swift */,
 				B5E9614F2BFF93BA006FDDD1 /* Assets.xcassets */,
 				B5E961512BFF93BA006FDDD1 /* Preview Content */,
+				B5C85B352C35D9D0008A501F /* Strings stuff.xcstrings */,
 			);
 			path = "Planner Bot";
 			sourceTree = "<group>";
@@ -197,6 +211,7 @@
 			knownRegions = (
 				en,
 				Base,
+				de,
 			);
 			mainGroup = B5E9613F2BFF93B9006FDDD1;
 			productRefGroup = B5E961492BFF93B9006FDDD1 /* Products */;
@@ -213,6 +228,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5C85B362C35D9D0008A501F /* Strings stuff.xcstrings in Resources */,
 				B5E961532BFF93BA006FDDD1 /* Preview Assets.xcassets in Resources */,
 				B5E961502BFF93BA006FDDD1 /* Assets.xcassets in Resources */,
 			);
@@ -238,6 +254,7 @@
 				B5963B212BFFC83800C6C468 /* Keyvault Service.swift in Sources */,
 				B5963B232BFFC84900C6C468 /* Bot Service.swift in Sources */,
 				B5963B2A2BFFD40000C6C468 /* PlannerBotView.swift in Sources */,
+				B5334B912C35ABA200595285 /* Shimmer.swift in Sources */,
 				B58598FE2C0807CF002238CB /* CreateEventView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

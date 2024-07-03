@@ -16,11 +16,19 @@ struct PlannerBotView: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                ForEach($viewModel.events){$hostedEvent in
-                    EventPreviewView(event: $hostedEvent)
+                if(viewModel.loading.isFetchingUserEvents){
+                    EventPreviewSkeletonView()
+                    EventPreviewSkeletonView()
+                    EventPreviewSkeletonView()
+                } else if(!viewModel.loading.isFetchingUserEvents && viewModel.events.isEmpty){
+                    ContentUnavailableView("No events found", systemImage: "calendar.badge.plus", description: Text(LocalizedStringKey("no events")))
+                } else {
+                    ForEach($viewModel.events){$event in
+                        EventPreviewView(event: $event)
+                    }
                 }
             }.navigationTitle("Upcoming events")
-            .toolbar{
+            .toolbar {
                 ToolbarItem {
                     if(viewModel.auth == nil){
                         Button(action: {

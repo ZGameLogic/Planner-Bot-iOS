@@ -17,7 +17,9 @@ struct LoginView: View {
         WebView(urlString: Constants.DISCORD_AUTH_URL, navigation: $webViewNavigation, onDismiss: {}).onChange(of: webViewNavigation.redirectURL, {
             presented = false
             Task {
+                print(webViewNavigation.redirectURL)
                 if let code = (webViewNavigation.redirectURL?.valueOf("code")) {
+                    print("registering code")
                     BotService.registerCode(code: code, deviceUUID: viewModel.deviceUUID) { result in
                         switch(result){
                         case .success(let data):

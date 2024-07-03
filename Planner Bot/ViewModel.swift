@@ -27,16 +27,9 @@ class ViewModel: ObservableObject {
     @Published var discordUserProfiles: [DiscordUserProfile] = []
     @Published var discordRoleProfiles: [DiscordRoleProfile] = []
     @Published var events: [Event] = []
+    @Published var loading: Loading = Loading()
     
-    private var timerCancellable: AnyCancellable?
     let deviceUUID: String
-    var userChoices: [DiscordUserProfile] {
-        if let auth = auth {
-            return discordUserProfiles.filter{$0.id != auth.user.id}
-        } else {
-            return []
-        }
-    }
     
     var invitedToEvents: [Event] {
         if let auth = auth {
@@ -55,6 +48,16 @@ class ViewModel: ObservableObject {
             return []
         }
     }
+    
+    var userChoices: [DiscordUserProfile] {
+        if let auth = auth {
+            return discordUserProfiles.filter{$0.id != auth.user.id}
+        } else {
+            return []
+        }
+    }
+    
+    private var timerCancellable: AnyCancellable?
 
     init() {
         deviceUUID = KeyvaultService.getDeviceUUID()
@@ -93,6 +96,9 @@ class ViewModel: ObservableObject {
                 }
             case .failure(let error):
                 print("Error fetching user events \(error)")
+            }
+            DispatchGroup().notify(queue: .main) {
+                self.loading.isFetchingUserEvents = false
             }
         }
     }
@@ -146,16 +152,20 @@ class ViewModel: ObservableObject {
     }
     
     private func authenticate() {
+        loading.isFetchingAuth = true
         if let stringAuth = KeyvaultService.retrieveFromKeychain(key: "com.zgamelogic.auth") {
             do {
                 let data = try JSONDecoder().decode(DiscordAuth.self, from: stringAuth.data(using: .utf8)!)
                 auth = data
+                loading.isFetchingAuth = false
                 refresh()
             } catch {
                 self.auth = nil
+                loading.isFetchingAuth = false
                 print("Unable to decode data for auth")
             }
         } else {
+            loading.isFetchingAuth = false
             self.auth = nil
         }
         if let auth = auth {
@@ -164,15 +174,18 @@ class ViewModel: ObservableObject {
                 case .success(let data):
                     DispatchGroup().notify(queue: .main) {
                         self.auth = data
+                        self.loading.isFetchingAuth = false
                         self.refresh()
                     }
                 case .failure(let error):
                     self.auth = nil
+                    self.loading.isFetchingAuth = false
                     print("Unable to relogin \(error)")
                 }
             }
         } else {
-            self.auth = nil
+            auth = nil
+            loading.isFetchingAuth = false
         }
     }
     
@@ -186,5 +199,19 @@ class ViewModel: ObservableObject {
     
     deinit {
         timerCancellable?.cancel()
+    }
+}
+
+struct Loading: Equatable {
+    var isFetchingAuth: Bool
+    var isFetchingUserList: Bool
+    var isFetchingRoleList: Bool
+    var isFetchingUserEvents: Bool
+    
+    init() {
+        isFetchingAuth = false
+        isFetchingUserList = false
+        isFetchingRoleList = false
+        isFetchingUserEvents = false
     }
 }

@@ -62,7 +62,7 @@ struct EventPreviewView: View {
     
     func toLocalTime(date: Date) -> String {
        let outputDateFormatter = DateFormatter()
-       outputDateFormatter.dateFormat = "h:mma"
+       outputDateFormatter.dateFormat = "EEEE M/d 'at' h:mma"
        outputDateFormatter.timeZone = TimeZone.current
        
        return outputDateFormatter.string(from: date)
@@ -88,7 +88,27 @@ struct EventPreviewView: View {
     }
 }
 
-//Label("Add Event", systemImage: "calendar.badge.plus")
+struct EventPreviewSkeletonView: View {
+    var body: some View {
+        GroupBox(label: Text("Hunt Showdown").font(.title), content: {
+            VStack(alignment: .leading){
+                Label("Thursday 4/3 at 8:00pm", systemImage: "clock")
+                Label("Event notes", systemImage: "note.text")
+                Gauge(value: 0.0, in: 0...5, label: {
+                    HStack {
+                        Label("0/3 accepted", systemImage: "person.fill.checkmark")
+                        Spacer()
+                    }
+                })
+            }
+        })
+        .redacted(reason: .placeholder)
+        .shimmering()
+        .frame(width: 325)
+        .padding()
+    }
+}
+
 
 #Preview {
     EventPreviewView(event: Binding.constant(
@@ -110,4 +130,8 @@ struct EventPreviewView: View {
         ],
         events: []
     ))
+}
+
+#Preview {
+    EventPreviewSkeletonView()
 }
