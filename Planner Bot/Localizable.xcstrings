@@ -60,7 +60,14 @@
 
     },
     "Invitees" : {
-
+      "localizations" : {
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : ""
+          }
+        }
+      }
     },
     "Limit: %@" : {
 
@@ -110,7 +117,7 @@
     "Plan notes" : {
 
     },
-    "Plan start time" : {
+    "Plan start" : {
 
     },
     "Select invitees" : {

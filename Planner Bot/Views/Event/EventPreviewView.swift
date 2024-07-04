@@ -12,6 +12,13 @@ struct EventPreviewView: View {
     @Binding var event: Event
     @State var showUsers = false
     
+    var buttons: [Bool] {event.buttons(auth: viewModel.auth!)}
+    
+    init(event: Binding<Event>, showUsers: Bool = false) {
+        self._event = event
+        self.showUsers = showUsers
+    }
+    
     var body: some View {
         GroupBox(label: Text(event.title).font(.title), content: {
             VStack(alignment: .leading){
@@ -53,6 +60,11 @@ struct EventPreviewView: View {
                         }
                     })
                     Spacer()
+                }
+                HStack {
+                    if buttons[Buttons.accept.rawValue] && buttons[Buttons.maybe.rawValue] && buttons[Buttons.deny.rawValue] {
+                        
+                    }
                 }
             }
         })
@@ -112,6 +124,16 @@ struct EventPreviewView: View {
             }
         }
     }
+    
+    let sendMessageButton: some View = Button("Send message") {}
+    let deleteEventButton: some View = Button("Delete event") {}.foregroundStyle(.red)
+    let acceptButton: some View = Button("Accept") {}.foregroundStyle(.green)
+    let maybeButton: some View = Button("Maybe") {}
+    let denyButton: some View = Button("Deny") {}.foregroundStyle(.red)
+    let dropoutButton: some View = Button("Dropout") {}.foregroundStyle(.red)
+    let waitlistButton: some View = Button("Waitlist") {}.foregroundStyle(.green)
+    let requestFillinButton: some View = Button("Request fillin") {}
+    let fillinButton: some View = Button("Fill in") {}.foregroundStyle(.green)
 }
 
 struct EventPreviewSkeletonView: View {
@@ -139,14 +161,14 @@ struct EventPreviewSkeletonView: View {
 #Preview {
     EventPreviewView(event: Binding.constant(
         Event(id: 1, title: "GTFO", notes: "Lets win one boys", startTime: Date(), count: 3, authorId: 123456789, users: [
-            EventUser(id: 1, status: .accepted, isNeedFillIn: false),
+            EventUser(id: 1, status: .deciding, isNeedFillIn: false),
             EventUser(id: 2, status: .accepted, isNeedFillIn: false),
             EventUser(id: 3, status: .deciding, isNeedFillIn: false),
             EventUser(id: 4, status: .declined, isNeedFillIn: false),
             EventUser(id: 5, status: .maybe, isNeedFillIn: false),
         ])
     )).environmentObject(ViewModel(
-        auth: DiscordAuth(user: User(locale: "", verified: true, username: "zabory", global_name: "zabory", avatar: "", id: 123456789), token: Token(token_type: "", access_token: "token", expires_in: 9999999, refresh_token: "refresh", scope: "local")),
+        auth: DiscordAuth(user: User(locale: "", verified: true, username: "zabory", global_name: "zabory", avatar: "", id: 1), token: Token(token_type: "", access_token: "token", expires_in: 9999999, refresh_token: "refresh", scope: "local")),
         discordUserProfiles: [
             DiscordUserProfile(id: 1, username: "user 1", avatar: nil),
             DiscordUserProfile(id: 2, username: "user 2", avatar: ""),

@@ -25,6 +25,8 @@ struct CreateEventView: View {
     @State var showFormError = false
     @State var showPlanCreationError = false
     
+    @State var searchText = ""
+    
     var body: some View {
         Form {
             DatePicker("Plan start", selection: $startTime, in: Date()...).datePickerStyle(.compact)
@@ -82,23 +84,31 @@ struct CreateEventView: View {
             }
         }.sheet(isPresented: $showInviteeSelect){
             Text("Select invitees").padding()
-            List {
-                ForEach($userToggles) {$userToggle in
-                    Toggle(isOn: $userToggle.isSelected) {
-                        userListView(userToggle.id)
+            NavigationStack {
+                List {
+                    ForEach($userToggles.filter{
+                        searchText == "" ||
+                        $0.wrappedValue.name.lowercased().contains(searchText.lowercased())
+                    }) {$userToggle in
+                        Toggle(isOn: $userToggle.isSelected) {
+                            userListView(userToggle.id)
+                        }
+                    }
+                    ForEach($roleToggles.filter{
+                        searchText == "" ||
+                        $0.wrappedValue.name.lowercased().contains(searchText.lowercased())
+                    }) {$roleToggle in
+                        Toggle(isOn: $roleToggle.isSelected) {
+                            roleListView(roleToggle.id)
+                        }
+                    }
+                    HStack {
+                        Spacer()
+                        Button("Done") {showInviteeSelect.toggle()}
+                        Spacer()
                     }
                 }
-                ForEach($roleToggles) {$roleToggle in
-                    Toggle(isOn: $roleToggle.isSelected) {
-                        roleListView(roleToggle.id)
-                    }
-                }
-                HStack {
-                    Spacer()
-                    Button("Done") {showInviteeSelect.toggle()}
-                    Spacer()
-                }
-            }
+            }.searchable(text: $searchText, isPresented: Binding.constant(true))
         }.onAppear(perform: populateToggles)
         .alert("Form not complete", isPresented: $showFormError, actions: {
             Button("Okay", action: {showFormError.toggle()})

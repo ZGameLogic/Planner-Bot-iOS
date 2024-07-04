@@ -55,16 +55,43 @@ struct Event: Codable, Identifiable {
     }
     
     func buttons(auth: DiscordAuth) -> [Bool] {
-        let sendMessage = auth.user.id == authorId
-        let deleteEvent = auth.user.id == authorId
+        let uid = auth.user.id
+        let status = users.first{$0.id == uid}!.status
+        let planFilled = acceptedUsers.count >= count
+        let planNeedFillIn = users.contains{$0.isNeedFillIn}
         
-        let accept = false
-        let maybe = false
-        let deny = false
-        let dropout = false
-        let waitlist = false
-        let requestFillin = false
-        let fillin = false
+        let sendMessage = uid == authorId
+        let deleteEvent = uid == authorId
+        
+        var accept = false
+        var maybe = false
+        var deny = false
+        var dropout = false
+        var waitlist = false
+        var requestFillin = false
+        var fillin = false
+        
+        switch(status){
+        case .deciding:
+            accept = !planFilled
+            maybe = !planFilled
+            deny = !planFilled
+            waitlist = planFilled
+            fillin = planFilled && planNeedFillIn
+        case .accepted:
+            dropout = true
+            requestFillin = true
+        case .maybe:
+            accept = !planFilled
+            deny = !planFilled
+            waitlist = planFilled
+            fillin = planFilled && planNeedFillIn
+        case .waitlisted:
+            dropout = true
+        case .fillIn:
+            dropout = false
+        case .declined: break
+        }
         
         return [sendMessage, deleteEvent, accept, maybe, deny, dropout, waitlist, requestFillin, fillin]
     }
@@ -157,6 +184,18 @@ struct CreateEventData: Codable {
         self.userInvitees = userInvitees
         self.roleInvitees = roleInvitees
     }
+}
+
+enum Buttons: Int {
+    case sendMessage = 0
+    case deleteEvent = 1
+    case accept = 2
+    case maybe = 3
+    case deny = 4
+    case dropout = 5
+    case waitlist = 7
+    case requestFillIn = 8
+    case fillIn = 9
 }
 
 enum Status: String, Codable, Comparable {
