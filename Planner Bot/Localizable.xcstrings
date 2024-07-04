@@ -20,6 +20,9 @@
     "0/3 accepted" : {
 
     },
+    "Accept" : {
+
+    },
     "Add Item" : {
       "localizations" : {
         "de" : {
@@ -30,6 +33,12 @@
         }
       }
     },
+    "Delete event" : {
+
+    },
+    "Deny" : {
+
+    },
     "Done" : {
       "localizations" : {
         "de" : {
@@ -39,6 +48,9 @@
           }
         }
       }
+    },
+    "Dropout" : {
+
     },
     "Error submitting event" : {
       "localizations" : {
@@ -51,6 +63,9 @@
       }
     },
     "Event notes" : {
+
+    },
+    "Fill in" : {
 
     },
     "Form not complete" : {
@@ -73,6 +88,9 @@
 
     },
     "Logout" : {
+
+    },
+    "Maybe" : {
 
     },
     "No events found" : {
@@ -120,7 +138,13 @@
     "Plan start" : {
 
     },
+    "Request fillin" : {
+
+    },
     "Select invitees" : {
+
+    },
+    "Send message" : {
 
     },
     "Submit" : {
@@ -130,6 +154,9 @@
 
     },
     "Upcoming events" : {
+
+    },
+    "Waitlist" : {
 
     }
   },

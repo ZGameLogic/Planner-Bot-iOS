@@ -56,7 +56,7 @@ struct Event: Codable, Identifiable {
     
     func buttons(auth: DiscordAuth) -> [Bool] {
         let uid = auth.user.id
-        let status = users.first{$0.id == uid}!.status
+        let status = users.first{$0.id == uid}?.status
         let planFilled = acceptedUsers.count >= count
         let planNeedFillIn = users.contains{$0.isNeedFillIn}
         
@@ -91,6 +91,7 @@ struct Event: Codable, Identifiable {
         case .fillIn:
             dropout = false
         case .declined: break
+        case .none: break
         }
         
         return [sendMessage, deleteEvent, accept, maybe, deny, dropout, waitlist, requestFillin, fillin]
