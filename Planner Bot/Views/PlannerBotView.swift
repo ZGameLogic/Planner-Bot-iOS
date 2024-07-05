@@ -28,6 +28,7 @@ struct PlannerBotView: View {
                     }
                 }
             }.navigationTitle("Upcoming events")
+            .refreshable{viewModel.refresh()}
             .toolbar {
                 ToolbarItem {
                     if(viewModel.auth == nil){
@@ -66,6 +67,7 @@ struct PlannerBotView: View {
             if(viewModel.auth == nil){
                 showLogin = true
             }
+            viewModel.refresh()
         }
     }
 }

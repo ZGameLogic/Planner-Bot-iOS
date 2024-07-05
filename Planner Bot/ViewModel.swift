@@ -92,7 +92,7 @@ class ViewModel: ObservableObject {
             switch(result){
             case .success(let data):
                 DispatchGroup().notify(queue: .main) {
-                    self.events = data
+                    self.events = data.sorted()
                 }
             case .failure(let error):
                 print("Error fetching user events \(error)")
@@ -151,6 +151,29 @@ class ViewModel: ObservableObject {
         }
     }
     
+    func logout() {
+        DispatchGroup().notify(queue: .main) {
+            self.auth = nil
+            self.discordUserProfiles = []
+            _ = KeyvaultService.deleteFromKeychain(key: "com.zgamelogic.auth")
+        }
+    }
+    
+    func acceptEvent(_ event: Event, completion: @escaping (Result<PlanActionResult, Error>) -> Void){
+        guard let auth = auth else { return }
+        BotService.acceptPlan(auth: auth, deviceUUID: deviceUUID, event: event, completion: completion)
+    }
+    
+    func maybeEvent(_ event: Event, completion: @escaping (Result<PlanActionResult, Error>) -> Void){
+        guard let auth = auth else { return }
+        BotService.maybePlan(auth: auth, deviceUUID: deviceUUID, event: event, completion: completion)
+    }
+    
+    func denyEvent(_ event: Event, completion: @escaping (Result<PlanActionResult, Error>) -> Void){
+        guard let auth = auth else { return }
+        BotService.denyPlan(auth: auth, deviceUUID: deviceUUID, event: event, completion: completion)
+    }
+    
     private func authenticate() {
         loading.isFetchingAuth = true
         if let stringAuth = KeyvaultService.retrieveFromKeychain(key: "com.zgamelogic.auth") {
@@ -186,14 +209,6 @@ class ViewModel: ObservableObject {
         } else {
             auth = nil
             loading.isFetchingAuth = false
-        }
-    }
-    
-    func logout() {
-        DispatchGroup().notify(queue: .main) {
-            self.auth = nil
-            self.discordUserProfiles = []
-            _ = KeyvaultService.deleteFromKeychain(key: "com.zgamelogic.auth")
         }
     }
     

@@ -8,7 +8,15 @@
 import Foundation
 import SwiftUI
 
-struct Event: Codable, Identifiable {
+struct Event: Codable, Identifiable, Comparable {
+    static func < (lhs: Event, rhs: Event) -> Bool {
+        lhs.startTime < rhs.startTime
+    }
+    
+    static func == (lhs: Event, rhs: Event) -> Bool {
+        lhs.id == rhs.id
+    }
+    
     let id: Int64
     let title: String
     let notes: String
@@ -19,6 +27,7 @@ struct Event: Codable, Identifiable {
     
     var acceptedUsers: [EventUser] {users.filter{$0.status == .accepted}}
     var fillinedUsers: [EventUser] {users.filter{$0.status == .fillIn}}
+    var isFull: Bool {count <= acceptedUsers.count}
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -220,4 +229,9 @@ enum Status: String, Codable, Comparable {
     case waitlisted = "WAITLISTED"
     case fillIn = "FILLINED"
     case declined = "DECLINED"
+}
+
+struct PlanActionResult: Codable {
+    let success: Bool
+    let message: String
 }

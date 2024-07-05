@@ -12,6 +12,21 @@ struct EventPreviewView: View {
     @Binding var event: Event
     @State var showUsers = false
     
+    @State var isAccepting = false
+    @State var isMaybing = false
+    @State var isDenying = false
+    @State var isDroppingOut = false
+    @State var isWaitlisting = false
+    @State var isRequestingFillining = false
+    @State var isFilling = false
+    
+    @State var showAlert = false
+    @State var alertMessage = ""
+    
+    var isDoing: Bool {
+        isAccepting || isMaybing || isDenying || isDroppingOut || isWaitlisting || isRequestingFillining || isFilling
+    }
+    
     var buttons: [Bool] {event.buttons(auth: viewModel.auth!)}
     
     init(event: Binding<Event>, showUsers: Bool = false) {
@@ -48,28 +63,32 @@ struct EventPreviewView: View {
                         }
                     }
                 }
-                HStack{
-                    Spacer()
-                    Button(action: {
-                        withAnimation {showUsers.toggle()}
-                    }, label: {
-                        if(showUsers){
-                            Label("", systemImage: "chevron.up")
-                        } else {
-                            Label("", systemImage: "chevron.down")
-                        }
-                    })
-                    Spacer()
-                }
-                HStack {
-                    if buttons[Buttons.accept.rawValue] && buttons[Buttons.maybe.rawValue] && buttons[Buttons.deny.rawValue] {
-                        
+                Button(action: {
+                    withAnimation {
+                        showUsers.toggle()
                     }
+                }, label: {
+                    if(showUsers){
+                        Label("", systemImage: "chevron.up")
+                    } else {
+                        Label("", systemImage: "chevron.down")
+                    }
+                }).frame(maxWidth: .infinity, minHeight: 20, alignment: .center)
+                HStack(spacing: 20) {
+                    if buttons[Buttons.accept.rawValue]{acceptButton}
+                    if buttons[Buttons.maybe.rawValue]{maybeButton}
+                    if buttons[Buttons.deny.rawValue]{denyButton}
                 }
             }
         })
         .frame(width: 325)
         .padding()
+        .alert(isPresented: $showAlert) {
+            Alert(
+                title: Text("Unable to do plan action"),
+                message: Text(alertMessage)
+            )
+        }
     }
     
     func toLocalDateTime(date: Date) -> String {
@@ -125,15 +144,110 @@ struct EventPreviewView: View {
         }
     }
     
-    let sendMessageButton: some View = Button("Send message") {}
-    let deleteEventButton: some View = Button("Delete event") {}.foregroundStyle(.red)
-    let acceptButton: some View = Button("Accept") {}.foregroundStyle(.green)
-    let maybeButton: some View = Button("Maybe") {}
-    let denyButton: some View = Button("Deny") {}.foregroundStyle(.red)
-    let dropoutButton: some View = Button("Dropout") {}.foregroundStyle(.red)
-    let waitlistButton: some View = Button("Waitlist") {}.foregroundStyle(.green)
-    let requestFillinButton: some View = Button("Request fillin") {}
-    let fillinButton: some View = Button("Fill in") {}.foregroundStyle(.green)
+    let sendMessageButton: some View = Button("Send message") {
+        print("Send message")
+    }.frame(maxWidth: .infinity, alignment: .center)
+    
+    let deleteEventButton: some View = Button("Delete event") {
+        print("Delete event")
+    }.tint(.red).frame(maxWidth: .infinity, alignment: .center)
+    
+    var acceptButton: some View {
+        Button {
+            isAccepting = true
+            print("Accept")
+            viewModel.acceptEvent(event) { result in
+                DispatchGroup().notify(queue: .main) {
+                    switch(result){
+                    case .success(let data):
+                        if(data.success){
+                            viewModel.refresh()
+                        } else {
+                            alertMessage = data.message
+                            showAlert = true
+                        }
+                    case .failure(let error):
+                        print(error)
+                        alertMessage = "Unknown error"
+                        showAlert = true
+                    }
+                    isAccepting = false
+                }
+            }
+        } label: {
+            if isAccepting { ProgressView() } else { Text("Accept") }
+        }.buttonStyle(.bordered).tint(.green).frame(maxWidth: .infinity, alignment: .center).disabled(isDoing)
+    }
+    
+    var maybeButton: some View {
+        Button {
+            isMaybing = true
+            print("Maybe")
+            viewModel.maybeEvent(event) { result in
+                DispatchGroup().notify(queue: .main) {
+                    switch(result){
+                    case .success(let data):
+                        if(data.success){
+                            viewModel.refresh()
+                        } else {
+                            alertMessage = data.message
+                            showAlert = true
+                        }
+                    case .failure(let error):
+                        print(error)
+                        alertMessage = "Unknown error"
+                        showAlert = true
+                    }
+                    isMaybing = false
+                }
+            }
+        } label: {
+            if isMaybing { ProgressView() } else { Text("Maybe") }
+        }.buttonStyle(.bordered).tint(.blue).frame(maxWidth: .infinity, alignment: .center).disabled(isDoing)
+    }
+    
+    var denyButton: some View {
+        Button {
+            isDenying = true
+            print("Deny")
+            viewModel.denyEvent(event) { result in
+                DispatchGroup().notify(queue: .main) {
+                    switch(result){
+                    case .success(let data):
+                        if(data.success){
+                            viewModel.refresh()
+                        } else {
+                            alertMessage = data.message
+                            showAlert = true
+                        }
+                    case .failure(let error):
+                        print(error)
+                        alertMessage = "Unknown error"
+                        showAlert = true
+                    }
+                    isDenying = false
+                }
+            }
+        } label: {
+            if isDenying { ProgressView() } else { Text("Deny") }
+        }.buttonStyle(.bordered).tint(.red).frame(maxWidth: .infinity, alignment: .center).disabled(isDoing)
+    }
+    
+    let dropoutButton: some View = Button("Dropout") {
+        print("dropout")
+    }.tint(.red).frame(maxWidth: .infinity, alignment: .center)
+    
+    let waitlistButton: some View = Button("Waitlist") {
+        print("Waitlist")
+    }.tint(.green).frame(maxWidth: .infinity, alignment: .center)
+    
+    let requestFillinButton: some View = Button("Request fillin") {
+        print("request fillin")
+    }.frame(maxWidth: .infinity, alignment: .center)
+    
+    let fillinButton: some View = Button("Fill in") {
+        print("Fill in")
+    }.tint(.green).frame(maxWidth: .infinity, alignment: .center)
 }
 
 struct EventPreviewSkeletonView: View {
@@ -162,7 +276,7 @@ struct EventPreviewSkeletonView: View {
     EventPreviewView(event: Binding.constant(
         Event(id: 1, title: "GTFO", notes: "Lets win one boys", startTime: Date(), count: 3, authorId: 123456789, users: [
             EventUser(id: 1, status: .deciding, isNeedFillIn: false),
-            EventUser(id: 2, status: .accepted, isNeedFillIn: false),
+            EventUser(id: 2, status: .deciding, isNeedFillIn: false),
             EventUser(id: 3, status: .deciding, isNeedFillIn: false),
             EventUser(id: 4, status: .declined, isNeedFillIn: false),
             EventUser(id: 5, status: .maybe, isNeedFillIn: false),
