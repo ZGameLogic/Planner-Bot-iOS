@@ -22,11 +22,16 @@ struct Event: Codable, Identifiable, Comparable {
     let notes: String
     let startTime: Date
     let count: Int
-    let authorId: Int
+    let authorId: Int64
     let users: [EventUser]
     
     var acceptedUsers: [EventUser] {users.filter{$0.status == .accepted}}
     var fillinedUsers: [EventUser] {users.filter{$0.status == .fillIn}}
+    var acceptectAndOwnerIds: [Int64] {
+        var ids = users.filter{$0.status == .accepted}.map{$0.id}
+        ids.append(authorId)
+        return ids
+    }
     var isFull: Bool {count <= acceptedUsers.count}
     
     enum CodingKeys: String, CodingKey {
@@ -49,11 +54,11 @@ struct Event: Codable, Identifiable, Comparable {
         dateFormatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
         self.startTime = dateFormatter.date(from: dateString)!
         self.count = try container.decode(Int.self, forKey: .count)
-        self.authorId = try container.decode(Int.self, forKey: .authorId)
+        self.authorId = try container.decode(Int64.self, forKey: .authorId)
         self.users = try container.decode([EventUser].self, forKey: .users)
     }
     
-    init(id: Int64, title: String, notes: String, startTime: Date, count: Int, authorId: Int, users: [EventUser]) {
+    init(id: Int64, title: String, notes: String, startTime: Date, count: Int, authorId: Int64, users: [EventUser]) {
         self.id = id
         self.title = title
         self.notes = notes

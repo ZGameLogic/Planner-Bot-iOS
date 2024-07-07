@@ -9,12 +9,14 @@ import Foundation
 import Security
 
 struct KeyvaultService {
+    private static let GROUP_ID = "group.com.zgamelogic.Planner-Bot"
     static func storeInKeychain(key: String, value: String) -> Bool {
         guard let data = value.data(using: .utf8) else { return false }
         
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
             kSecAttrAccount as String: key,
+            kSecAttrAccessGroup as String: GROUP_ID,
             kSecValueData as String: data,
             kSecAttrAccessible as String: kSecAttrAccessibleAfterFirstUnlock
         ]
@@ -30,6 +32,7 @@ struct KeyvaultService {
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
             kSecAttrAccount as String: key,
+            kSecAttrAccessGroup as String: GROUP_ID,
             kSecReturnData as String: true,
             kSecMatchLimit as String: kSecMatchLimitOne
         ]
@@ -37,7 +40,10 @@ struct KeyvaultService {
         var item: CFTypeRef?
         let status = SecItemCopyMatching(query as CFDictionary, &item)
 
-        guard status == errSecSuccess, let data = item as? Data else { return nil }
+        guard status == errSecSuccess, let data = item as? Data else {
+            print("error in getting data")
+            return nil
+        }
         return String(data: data, encoding: .utf8)
     }
     

@@ -8,6 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		B5334B912C35ABA200595285 /* Shimmer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5334B902C35ABA200595285 /* Shimmer.swift */; };
+		B5497D982C39898E000BCB0F /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5497D972C39898E000BCB0F /* WidgetKit.framework */; };
+		B5497D9A2C39898E000BCB0F /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5497D992C39898E000BCB0F /* SwiftUI.framework */; };
+		B5497D9D2C39898E000BCB0F /* Plan_WidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5497D9C2C39898E000BCB0F /* Plan_WidgetBundle.swift */; };
+		B5497D9F2C39898E000BCB0F /* Plan_Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5497D9E2C39898E000BCB0F /* Plan_Widget.swift */; };
+		B5497DA12C39898E000BCB0F /* AppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5497DA02C39898E000BCB0F /* AppIntent.swift */; };
+		B5497DA32C39898F000BCB0F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5497DA22C39898F000BCB0F /* Assets.xcassets */; };
+		B5497DA72C39898F000BCB0F /* Plan WidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = B5497D952C39898E000BCB0F /* Plan WidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		B5497DAC2C398A6A000BCB0F /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56C7FD52C040DC1001DA721 /* Events.swift */; };
+		B5497DAD2C398A73000BCB0F /* Discord User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5963B322BFFE4AB00C6C468 /* Discord User.swift */; };
+		B5497DAE2C398A76000BCB0F /* Keyvault Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5963B202BFFC83800C6C468 /* Keyvault Service.swift */; };
+		B5497DAF2C398A78000BCB0F /* Bot Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5963B222BFFC84900C6C468 /* Bot Service.swift */; };
+		B5497DB02C398A7C000BCB0F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5963B272BFFD07300C6C468 /* Constants.swift */; };
+		B5497DB12C398A7F000BCB0F /* Cached Image Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5963B2C2BFFDDFE00C6C468 /* Cached Image Service.swift */; };
+		B5497DB42C39ADA4000BCB0F /* EventEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5497DB22C398B7A000BCB0F /* EventEntry.swift */; };
 		B56C7FD62C040DC1001DA721 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56C7FD52C040DC1001DA721 /* Events.swift */; };
 		B58598FE2C0807CF002238CB /* CreateEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58598FD2C0807CF002238CB /* CreateEventView.swift */; };
 		B5877C7E2C0503F3009759B2 /* EventPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5877C7D2C0503F3009759B2 /* EventPreviewView.swift */; };
@@ -27,8 +41,42 @@
 		B5E961532BFF93BA006FDDD1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5E961522BFF93BA006FDDD1 /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		B5497DA52C39898F000BCB0F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B5E961402BFF93B9006FDDD1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B5497D942C39898E000BCB0F;
+			remoteInfo = "Plan WidgetExtension";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B5497DA82C39898F000BCB0F /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				B5497DA72C39898F000BCB0F /* Plan WidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		B5334B902C35ABA200595285 /* Shimmer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shimmer.swift; sourceTree = "<group>"; };
+		B5497D952C39898E000BCB0F /* Plan WidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Plan WidgetExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5497D972C39898E000BCB0F /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		B5497D992C39898E000BCB0F /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		B5497D9C2C39898E000BCB0F /* Plan_WidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plan_WidgetBundle.swift; sourceTree = "<group>"; };
+		B5497D9E2C39898E000BCB0F /* Plan_Widget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plan_Widget.swift; sourceTree = "<group>"; };
+		B5497DA02C39898E000BCB0F /* AppIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIntent.swift; sourceTree = "<group>"; };
+		B5497DA22C39898F000BCB0F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B5497DA42C39898F000BCB0F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B5497DB22C398B7A000BCB0F /* EventEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventEntry.swift; sourceTree = "<group>"; };
+		B5497DB52C3A4A54000BCB0F /* Plan WidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Plan WidgetExtension.entitlements"; sourceTree = "<group>"; };
 		B56C7FD52C040DC1001DA721 /* Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
 		B58598FD2C0807CF002238CB /* CreateEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventView.swift; sourceTree = "<group>"; };
 		B5877C7D2C0503F3009759B2 /* EventPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPreviewView.swift; sourceTree = "<group>"; };
@@ -52,6 +100,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		B5497D922C39898E000BCB0F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5497D9A2C39898E000BCB0F /* SwiftUI.framework in Frameworks */,
+				B5497D982C39898E000BCB0F /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B5E961452BFF93B9006FDDD1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -68,6 +125,28 @@
 				B5334B902C35ABA200595285 /* Shimmer.swift */,
 			);
 			path = Modifiers;
+			sourceTree = "<group>";
+		};
+		B5497D962C39898E000BCB0F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B5497D972C39898E000BCB0F /* WidgetKit.framework */,
+				B5497D992C39898E000BCB0F /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B5497D9B2C39898E000BCB0F /* Plan Widget */ = {
+			isa = PBXGroup;
+			children = (
+				B5497D9C2C39898E000BCB0F /* Plan_WidgetBundle.swift */,
+				B5497D9E2C39898E000BCB0F /* Plan_Widget.swift */,
+				B5497DA02C39898E000BCB0F /* AppIntent.swift */,
+				B5497DB22C398B7A000BCB0F /* EventEntry.swift */,
+				B5497DA22C39898F000BCB0F /* Assets.xcassets */,
+				B5497DA42C39898F000BCB0F /* Info.plist */,
+			);
+			path = "Plan Widget";
 			sourceTree = "<group>";
 		};
 		B5877C7C2C050304009759B2 /* Event */ = {
@@ -131,8 +210,11 @@
 		B5E9613F2BFF93B9006FDDD1 = {
 			isa = PBXGroup;
 			children = (
+				B5497DB52C3A4A54000BCB0F /* Plan WidgetExtension.entitlements */,
 				B5963B1F2BFFC82100C6C468 /* Shared */,
 				B5E9614A2BFF93B9006FDDD1 /* Planner Bot */,
+				B5497D9B2C39898E000BCB0F /* Plan Widget */,
+				B5497D962C39898E000BCB0F /* Frameworks */,
 				B5E961492BFF93B9006FDDD1 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -141,6 +223,7 @@
 			isa = PBXGroup;
 			children = (
 				B5E961482BFF93B9006FDDD1 /* Planner Bot.app */,
+				B5497D952C39898E000BCB0F /* Plan WidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -172,6 +255,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		B5497D942C39898E000BCB0F /* Plan WidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B5497DAB2C39898F000BCB0F /* Build configuration list for PBXNativeTarget "Plan WidgetExtension" */;
+			buildPhases = (
+				B5497D912C39898E000BCB0F /* Sources */,
+				B5497D922C39898E000BCB0F /* Frameworks */,
+				B5497D932C39898E000BCB0F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Plan WidgetExtension";
+			productName = "Plan WidgetExtension";
+			productReference = B5497D952C39898E000BCB0F /* Plan WidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		B5E961472BFF93B9006FDDD1 /* Planner Bot */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B5E961562BFF93BA006FDDD1 /* Build configuration list for PBXNativeTarget "Planner Bot" */;
@@ -179,10 +279,12 @@
 				B5E961442BFF93B9006FDDD1 /* Sources */,
 				B5E961452BFF93B9006FDDD1 /* Frameworks */,
 				B5E961462BFF93B9006FDDD1 /* Resources */,
+				B5497DA82C39898F000BCB0F /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				B5497DA62C39898F000BCB0F /* PBXTargetDependency */,
 			);
 			name = "Planner Bot";
 			productName = "Planner Bot";
@@ -199,6 +301,9 @@
 				LastSwiftUpdateCheck = 1540;
 				LastUpgradeCheck = 1540;
 				TargetAttributes = {
+					B5497D942C39898E000BCB0F = {
+						CreatedOnToolsVersion = 15.4;
+					};
 					B5E961472BFF93B9006FDDD1 = {
 						CreatedOnToolsVersion = 15.4;
 					};
@@ -220,11 +325,20 @@
 			projectRoot = "";
 			targets = (
 				B5E961472BFF93B9006FDDD1 /* Planner Bot */,
+				B5497D942C39898E000BCB0F /* Plan WidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		B5497D932C39898E000BCB0F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5497DA32C39898F000BCB0F /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B5E961462BFF93B9006FDDD1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -238,6 +352,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		B5497D912C39898E000BCB0F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5497DAD2C398A73000BCB0F /* Discord User.swift in Sources */,
+				B5497DAC2C398A6A000BCB0F /* Events.swift in Sources */,
+				B5497DB12C398A7F000BCB0F /* Cached Image Service.swift in Sources */,
+				B5497DB42C39ADA4000BCB0F /* EventEntry.swift in Sources */,
+				B5497D9F2C39898E000BCB0F /* Plan_Widget.swift in Sources */,
+				B5497D9D2C39898E000BCB0F /* Plan_WidgetBundle.swift in Sources */,
+				B5497DA12C39898E000BCB0F /* AppIntent.swift in Sources */,
+				B5497DAE2C398A76000BCB0F /* Keyvault Service.swift in Sources */,
+				B5497DAF2C398A78000BCB0F /* Bot Service.swift in Sources */,
+				B5497DB02C398A7C000BCB0F /* Constants.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B5E961442BFF93B9006FDDD1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -262,7 +393,71 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		B5497DA62C39898F000BCB0F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B5497D942C39898E000BCB0F /* Plan WidgetExtension */;
+			targetProxy = B5497DA52C39898F000BCB0F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		B5497DA92C39898F000BCB0F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = "Plan WidgetExtension.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6M38R97L4D;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Plan Widget/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Plan Widget";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "zgamelogic.Planner-Bot.Plan-Widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B5497DAA2C39898F000BCB0F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = "Plan WidgetExtension.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6M38R97L4D;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Plan Widget/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Plan Widget";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "zgamelogic.Planner-Bot.Plan-Widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		B5E961542BFF93BA006FDDD1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -385,6 +580,7 @@
 		B5E961572BFF93BA006FDDD1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Planner Bot/Planner Bot.entitlements";
@@ -421,6 +617,7 @@
 		B5E961582BFF93BA006FDDD1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Planner Bot/Planner Bot.entitlements";
@@ -457,6 +654,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		B5497DAB2C39898F000BCB0F /* Build configuration list for PBXNativeTarget "Plan WidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B5497DA92C39898F000BCB0F /* Debug */,
+				B5497DAA2C39898F000BCB0F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		B5E961432BFF93B9006FDDD1 /* Build configuration list for PBXProject "Planner Bot" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

@@ -11,16 +11,25 @@ struct CachedImage: View {
     private var cache: NSCache<NSURL, UIImage>
     var url: String
     var loadingView: AnyView?
+    let fetchBeforeAppear: Bool?
+    let skipNetworkFetch: Bool?
     
     @State var image: Image?
     
-    init(url: String, loadingView: AnyView? = nil) {
+    init(url: String, loadingView: AnyView? = nil, fetchBeforeAppear: Bool? = nil, skipNetworkFetch: Bool? = nil) {
         self.cache = NSCache<NSURL, UIImage>()
         self.url = url
         if let cached = cache.object(forKey: URL(string: url)! as NSURL) {
+            print("Cached image found")
             image = Image(uiImage: cached)
         }
         self.loadingView = loadingView
+        self.fetchBeforeAppear = fetchBeforeAppear
+        self.skipNetworkFetch = skipNetworkFetch
+        if let fetch = fetchBeforeAppear, fetch {
+            print("fetching before appearing \(url)")
+            updateImageSync(url: url)
+        }
     }
     
     var body: some View {
@@ -36,7 +45,13 @@ struct CachedImage: View {
                     ProgressView()
                 }
             }
-        }.onAppear(perform: updateImage)
+        }.onAppear(perform: {
+            if(fetchBeforeAppear == nil || fetchBeforeAppear != nil && !fetchBeforeAppear!){
+                if(skipNetworkFetch == nil || skipNetworkFetch != nil && !skipNetworkFetch!){
+                    updateImage()
+                }
+            }
+        })
     }
     
     func updateImage() {
@@ -48,7 +63,47 @@ struct CachedImage: View {
             }
             let newImage = UIImage(data: data)
             cache.setObject(newImage!, forKey: URL(string: url)! as NSURL)
+            print("seeting cache image")
             image = Image(uiImage: newImage!)
         }
+    }
+    
+    func updateImageSync(url: String) {
+        print("updating image sync")
+        guard let url = URL(string: url) else { return }
+        
+        let semaphore = DispatchSemaphore(value: 0)
+        var newImage: UIImage?
+        
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+            defer { semaphore.signal() }
+            guard error == nil else {
+                print("Error fetching image: \(error!.localizedDescription)")
+                return
+            }
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                print("Invalid response code fetching image from url: \(url)")
+                return
+            }
+            guard let data = data else {
+                print("No data received")
+                return
+            }
+            print("Setting new image data")
+            newImage = UIImage(data: data)
+        }
+        
+        task.resume()
+        semaphore.wait()
+        print("post thread blocking")
+        guard let image = newImage else {
+            print("Failed to create image from data")
+            return
+        }
+        
+        // Cache and set the image
+        cache.setObject(image, forKey: url as NSURL)
+        self.image = Image(uiImage: image)
+        print(image.size)
     }
 }
