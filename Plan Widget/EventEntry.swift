@@ -38,7 +38,6 @@ struct EventTimelineEntry: TimelineEntry {
     }
     
     func userScrollView(_ user: Int64, users: [DiscordUserProfile]) -> some View {
-        print("got here")
         let discordUser = users.first{$0.id == user}
         let noUser = AnyView(Image(systemName: "person.crop.circle")
             .resizable()

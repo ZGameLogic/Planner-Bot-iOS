@@ -68,7 +68,11 @@ struct Event: Codable, Identifiable, Comparable {
         self.users = users
     }
     
-    func buttons(auth: DiscordAuth) -> [Bool] {
+    func buttons(auth: DiscordAuth?) -> [Bool] {
+        guard let auth = auth else {
+            return [false, false, false, false, false, false, false, false, false]
+        }
+        
         let uid = auth.user.id
         let status = users.first{$0.id == uid}?.status
         let planFilled = acceptedUsers.count >= count

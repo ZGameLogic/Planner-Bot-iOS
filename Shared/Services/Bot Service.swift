@@ -356,7 +356,11 @@ struct Token: Codable {
     }
 }
 
-struct DiscordAuth: Codable {
+struct DiscordAuth: Codable, Equatable {
+    static func == (lhs: DiscordAuth, rhs: DiscordAuth) -> Bool {
+        return lhs.token.access_token == rhs.token.access_token
+    }
+    
     let user: User
     let token: Token
     

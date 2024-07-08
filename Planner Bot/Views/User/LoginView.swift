@@ -18,7 +18,6 @@ struct LoginView: View {
             presented = false
             Task {
                 if let code = (webViewNavigation.redirectURL?.valueOf("code")) {
-                    print("registering code")
                     BotService.registerCode(code: code, deviceUUID: viewModel.deviceUUID) { result in
                         switch(result){
                         case .success(let data):

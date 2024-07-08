@@ -11,6 +11,9 @@ import Combine
 class ViewModel: ObservableObject {
     @Published var auth: DiscordAuth? {
         didSet {
+            guard auth != oldValue else {
+                return
+            }
             if let auth = auth {
                 do {
                     let jsonData = try JSONEncoder().encode(auth)
@@ -18,6 +21,7 @@ class ViewModel: ObservableObject {
                         _ = KeyvaultService.storeInKeychain(key: "com.zgamelogic.auth", value: jsonString)
                     }
                 } catch {}
+                websocketConnect()
             } else {
                 _ = KeyvaultService.deleteFromKeychain(key: "com.zgamelogic.auth")
             }
@@ -58,6 +62,7 @@ class ViewModel: ObservableObject {
     }
     
     private var timerCancellable: AnyCancellable?
+    private var webSocketTask: URLSessionWebSocketTask?
 
     init() {
         deviceUUID = KeyvaultService.getDeviceUUID()
@@ -67,7 +72,6 @@ class ViewModel: ObservableObject {
             .sink { _ in
                 self.fetchUserEvents()
             }
-        print("Done initing")
     }
     
     init(auth: DiscordAuth, discordUserProfiles: [DiscordUserProfile], events: [Event]){
@@ -77,17 +81,37 @@ class ViewModel: ObservableObject {
         self.events = events
     }
     
+    private func receiveMessage() {
+        webSocketTask?.receive { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .failure(let error):
+                print("Error receiving message: \(error)")
+            case .success(let message):
+                switch message {
+                case .string(let text):
+                    print(text)
+                case .data(let data):
+                    print("Received data: \(data)")
+                @unknown default:
+                    fatalError()
+                }
+                receiveMessage()
+            }
+        }
+    }
+    
     func refresh(){
         fetchServerUsers()
         fetchServerRoles()
         fetchUserEvents()
+        websocketConnect()
     }
     
     func fetchUserEvents(){
         guard let auth = auth else {
             return
         }
-        print("fetching user events")
         BotService.fetchUserEvents(token: auth.token.access_token, device: deviceUUID) { result in
             switch(result){
             case .success(let data):
@@ -155,8 +179,10 @@ class ViewModel: ObservableObject {
         DispatchGroup().notify(queue: .main) {
             self.auth = nil
             self.discordUserProfiles = []
+            self.events = []
             _ = KeyvaultService.deleteFromKeychain(key: "com.zgamelogic.auth")
         }
+        webSocketTask?.cancel(with: .goingAway, reason: nil)
     }
     
     func acceptEvent(_ event: Event, completion: @escaping (Result<PlanActionResult, Error>) -> Void){
@@ -172,6 +198,18 @@ class ViewModel: ObservableObject {
     func denyEvent(_ event: Event, completion: @escaping (Result<PlanActionResult, Error>) -> Void){
         guard let auth = auth else { return }
         BotService.denyPlan(auth: auth, deviceUUID: deviceUUID, event: event, completion: completion)
+    }
+    
+    private func websocketConnect(){
+        if let auth = auth {
+            webSocketTask?.cancel(with: .goingAway, reason: nil)
+            var request = URLRequest(url: URL(string: "\(BotService.BASE_URL)/planner")!)
+            request.addValue(deviceUUID, forHTTPHeaderField: "device")
+            request.addValue(auth.token.access_token, forHTTPHeaderField: "token")
+            webSocketTask = URLSession(configuration: .default).webSocketTask(with: request)
+            webSocketTask?.resume()
+            receiveMessage()
+        }
     }
     
     private func authenticate() {
@@ -207,7 +245,6 @@ class ViewModel: ObservableObject {
                 }
             }
         } else {
-            auth = nil
             loading.isFetchingAuth = false
         }
     }

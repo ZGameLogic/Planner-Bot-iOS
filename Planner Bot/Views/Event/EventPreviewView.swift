@@ -27,7 +27,7 @@ struct EventPreviewView: View {
         isAccepting || isMaybing || isDenying || isDroppingOut || isWaitlisting || isRequestingFillining || isFilling
     }
     
-    var buttons: [Bool] {event.buttons(auth: viewModel.auth!)}
+    var buttons: [Bool] {event.buttons(auth: viewModel.auth)}
     
     init(event: Binding<Event>, showUsers: Bool = false) {
         self._event = event
@@ -155,7 +155,6 @@ struct EventPreviewView: View {
     var acceptButton: some View {
         Button {
             isAccepting = true
-            print("Accept")
             viewModel.acceptEvent(event) { result in
                 DispatchGroup().notify(queue: .main) {
                     switch(result){
@@ -182,7 +181,6 @@ struct EventPreviewView: View {
     var maybeButton: some View {
         Button {
             isMaybing = true
-            print("Maybe")
             viewModel.maybeEvent(event) { result in
                 DispatchGroup().notify(queue: .main) {
                     switch(result){
@@ -209,7 +207,6 @@ struct EventPreviewView: View {
     var denyButton: some View {
         Button {
             isDenying = true
-            print("Deny")
             viewModel.denyEvent(event) { result in
                 DispatchGroup().notify(queue: .main) {
                     switch(result){

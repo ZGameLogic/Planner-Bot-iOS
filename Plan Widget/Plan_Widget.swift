@@ -42,11 +42,9 @@ struct Provider: AppIntentTimelineProvider {
     }
     
     private func authenticate(uuid: String) -> DiscordAuth? {
-        print("trying to authenticate")
         var auth: DiscordAuth? = nil
         if let stringAuth = KeyvaultService.retrieveFromKeychain(key: "com.zgamelogic.auth") {
             do {
-                print("Decoded")
                 auth = try JSONDecoder().decode(DiscordAuth.self, from: stringAuth.data(using: .utf8)!)
             } catch {
                 print("Could not decode")
@@ -59,7 +57,6 @@ struct Provider: AppIntentTimelineProvider {
             let result = BotService.reloginSyncronous(auth: auth, deviceUUID: uuid)
                 switch(result) {
                 case .success(let data):
-                    print("Successful")
                     return data
                 case .failure(let error):
                     print(error)

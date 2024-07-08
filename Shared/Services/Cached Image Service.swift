@@ -20,14 +20,12 @@ struct CachedImage: View {
         self.cache = NSCache<NSURL, UIImage>()
         self.url = url
         if let cached = cache.object(forKey: URL(string: url)! as NSURL) {
-            print("Cached image found")
             image = Image(uiImage: cached)
         }
         self.loadingView = loadingView
         self.fetchBeforeAppear = fetchBeforeAppear
         self.skipNetworkFetch = skipNetworkFetch
         if let fetch = fetchBeforeAppear, fetch {
-            print("fetching before appearing \(url)")
             updateImageSync(url: url)
         }
     }
@@ -63,13 +61,11 @@ struct CachedImage: View {
             }
             let newImage = UIImage(data: data)
             cache.setObject(newImage!, forKey: URL(string: url)! as NSURL)
-            print("seeting cache image")
             image = Image(uiImage: newImage!)
         }
     }
     
     func updateImageSync(url: String) {
-        print("updating image sync")
         guard let url = URL(string: url) else { return }
         
         let semaphore = DispatchSemaphore(value: 0)
@@ -89,13 +85,11 @@ struct CachedImage: View {
                 print("No data received")
                 return
             }
-            print("Setting new image data")
             newImage = UIImage(data: data)
         }
         
         task.resume()
         semaphore.wait()
-        print("post thread blocking")
         guard let image = newImage else {
             print("Failed to create image from data")
             return
