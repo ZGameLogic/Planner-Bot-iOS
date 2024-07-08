@@ -61,17 +61,11 @@ class ViewModel: ObservableObject {
         }
     }
     
-    private var timerCancellable: AnyCancellable?
     private var webSocketTask: URLSessionWebSocketTask?
 
     init() {
         deviceUUID = KeyvaultService.getDeviceUUID()
         authenticate()
-        timerCancellable = Timer.publish(every: 15, on: .main, in: .common)
-            .autoconnect()
-            .sink { _ in
-                self.fetchUserEvents()
-            }
     }
     
     init(auth: DiscordAuth, discordUserProfiles: [DiscordUserProfile], events: [Event]){
@@ -85,14 +79,27 @@ class ViewModel: ObservableObject {
         webSocketTask?.receive { [weak self] result in
             guard let self = self else { return }
             switch result {
-            case .failure(let error):
-                print("Error receiving message: \(error)")
+            case .failure(let error): break
             case .success(let message):
                 switch message {
                 case .string(let text):
                     print(text)
                 case .data(let data):
-                    print("Received data: \(data)")
+                    do {
+                        let decodedData = try JSONDecoder().decode(Event.self, from: data)
+                        DispatchGroup().notify(queue: .main) {
+                            if let index = self.events.firstIndex(where: {$0.id == decodedData.id}) {
+                                self.events[index] = decodedData
+                            } else {
+                                self.events.append(decodedData)
+                            }
+                            self.events = self.events.sorted(by: <)
+                        }
+                        print(decodedData)
+                    } catch {
+                        print(error)
+                        print("Error decoding websocket message")
+                    }
                 @unknown default:
                     fatalError()
                 }
@@ -247,10 +254,6 @@ class ViewModel: ObservableObject {
         } else {
             loading.isFetchingAuth = false
         }
-    }
-    
-    deinit {
-        timerCancellable?.cancel()
     }
 }
 
