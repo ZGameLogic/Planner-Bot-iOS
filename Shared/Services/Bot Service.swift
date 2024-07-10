@@ -268,6 +268,33 @@ struct BotService {
         }.resume()
     }
     
+    static func deletePlan(auth: DiscordAuth, deviceUUID: String, event: Event, completion: @escaping (Result<PlanActionResult, Error>) -> Void) {
+        let urlComponents = URLComponents(string: "\(BASE_URL)/plans/\(event.id)")!
+        let url = urlComponents.url!
+        var request = URLRequest(url: url)
+        request.httpMethod = "DELETE"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue(auth.token.access_token, forHTTPHeaderField: "token")
+        request.setValue(deviceUUID, forHTTPHeaderField: "device")
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            guard let data = data else {
+                completion(.failure(URLError(.badServerResponse)))
+                return
+            }
+            do {
+                let decodedData = try JSONDecoder().decode(PlanActionResult.self, from: data)
+                completion(.success(decodedData))
+            } catch {
+                completion(.failure(error))
+            }
+        }.resume()
+    }
+    
     static func createPlan(auth: DiscordAuth, deviceUUID: String, planData: CreateEventData, completion: @escaping (Result<Event, Error>) -> Void){
         let urlComponents = URLComponents(string: "\(BASE_URL)/plans")!
         let url = urlComponents.url!

@@ -13,6 +13,8 @@ struct EventPreviewView: View {
     @State var showUsers = false
     
     @State var isAccepting = false
+    @State var isDeleting = false
+    @State var isSendingMessage = false
     @State var isMaybing = false
     @State var isDenying = false
     @State var isDroppingOut = false
@@ -22,6 +24,8 @@ struct EventPreviewView: View {
     
     @State var showAlert = false
     @State var alertMessage = ""
+    
+    @State var showDeleteEvent = false
     
     var isDoing: Bool {
         isAccepting || isMaybing || isDenying || isDroppingOut || isWaitlisting || isRequestingFillining || isFilling
@@ -78,6 +82,8 @@ struct EventPreviewView: View {
                     if buttons[Buttons.accept.rawValue]{acceptButton}
                     if buttons[Buttons.maybe.rawValue]{maybeButton}
                     if buttons[Buttons.deny.rawValue]{denyButton}
+                    if buttons[Buttons.sendMessage.rawValue]{sendMessageButton}
+                    if buttons[Buttons.deleteEvent.rawValue]{deleteEventButton}
                 }
             }
         })
@@ -87,6 +93,34 @@ struct EventPreviewView: View {
             Alert(
                 title: Text("Unable to do plan action"),
                 message: Text(alertMessage)
+            )
+        }
+        .alert(isPresented: $showDeleteEvent) {
+            Alert(
+                title: Text("Delete Event"),
+                message: Text("delete_event"),
+                primaryButton: .destructive(Text("Delete")) {
+                    isDeleting = true
+                    viewModel.deleteEvent(event) { result in
+                        DispatchGroup().notify(queue: .main) {
+                            switch(result){
+                            case .success(let data):
+                                if(data.success){
+                                    viewModel.refresh()
+                                } else {
+                                    alertMessage = data.message
+                                    showAlert = true
+                                }
+                            case .failure(let error):
+                                print(error)
+                                alertMessage = "Unknown error"
+                                showAlert = true
+                            }
+                            isDeleting = false
+                        }
+                    }
+                },
+                secondaryButton: .cancel()
             )
         }
     }
@@ -144,13 +178,21 @@ struct EventPreviewView: View {
         }
     }
     
-    let sendMessageButton: some View = Button("Send message") {
-        print("Send message")
-    }.frame(maxWidth: .infinity, alignment: .center)
+    var sendMessageButton: some View {
+        Button {
+            print("Send message")
+        } label: {
+            if isSendingMessage { ProgressView() } else { Text("Send message") }
+        }.buttonStyle(.bordered).frame(maxWidth: .infinity, alignment: .center).disabled(isSendingMessage)
+    }
     
-    let deleteEventButton: some View = Button("Delete event") {
-        print("Delete event")
-    }.tint(.red).frame(maxWidth: .infinity, alignment: .center)
+    var deleteEventButton: some View {
+        Button {
+            showDeleteEvent = true
+        } label: {
+            if isDeleting { ProgressView() } else { Text("Delete") }
+        }.buttonStyle(.bordered).tint(.red).frame(maxWidth: .infinity, alignment: .center).disabled(isDeleting)
+    }
     
     var acceptButton: some View {
         Button {

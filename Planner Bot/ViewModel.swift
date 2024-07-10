@@ -79,7 +79,7 @@ class ViewModel: ObservableObject {
         webSocketTask?.receive { [weak self] result in
             guard let self = self else { return }
             switch result {
-            case .failure(let error): break
+            case .failure(_): break
             case .success(let message):
                 switch message {
                 case .string(let text):
@@ -205,6 +205,11 @@ class ViewModel: ObservableObject {
     func denyEvent(_ event: Event, completion: @escaping (Result<PlanActionResult, Error>) -> Void){
         guard let auth = auth else { return }
         BotService.denyPlan(auth: auth, deviceUUID: deviceUUID, event: event, completion: completion)
+    }
+    
+    func deleteEvent(_ event: Event, completion: @escaping (Result<PlanActionResult, Error>) -> Void){
+        guard let auth = auth else { return }
+        BotService.deletePlan(auth: auth, deviceUUID: deviceUUID, event: event, completion: completion)
     }
     
     private func websocketConnect(){

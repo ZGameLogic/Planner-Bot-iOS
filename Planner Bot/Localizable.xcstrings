@@ -33,8 +33,22 @@
         }
       }
     },
-    "Delete event" : {
+    "Delete" : {
 
+    },
+    "Delete Event" : {
+
+    },
+    "delete_event" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Are you sure you want to delete this Event? This Action cannot be undone."
+          }
+        }
+      }
     },
     "Deny" : {
 
