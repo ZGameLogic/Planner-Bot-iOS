@@ -33,14 +33,28 @@ struct EventPreviewView: View {
     
     var buttons: [Bool] {event.buttons(auth: viewModel.auth)}
     
+    var showMenuButton: Bool {
+        buttons[Buttons.deleteEvent.rawValue] || buttons[Buttons.sendMessage.rawValue]
+    }
+    
     init(event: Binding<Event>, showUsers: Bool = false) {
         self._event = event
         self.showUsers = showUsers
     }
     
     var body: some View {
-        GroupBox(label: Text(event.title).font(.title), content: {
+        GroupBox {
             VStack(alignment: .leading){
+                HStack {
+                    Text(event.title).font(.title)
+                    Spacer()
+                    if showMenuButton {
+                        Menu("", systemImage: "list.dash") {
+                            sendMessageButton.disabled(true)
+                            deleteEventButton
+                        }
+                    }
+                }
                 Label(toLocalTime(date: event.startTime), systemImage: "clock")
                 if(!event.notes.isEmpty){
                     Label(event.notes, systemImage: "note.text")
@@ -82,11 +96,9 @@ struct EventPreviewView: View {
                     if buttons[Buttons.accept.rawValue]{acceptButton}
                     if buttons[Buttons.maybe.rawValue]{maybeButton}
                     if buttons[Buttons.deny.rawValue]{denyButton}
-                    if buttons[Buttons.sendMessage.rawValue]{sendMessageButton}
-                    if buttons[Buttons.deleteEvent.rawValue]{deleteEventButton}
                 }
             }
-        })
+        }
         .frame(width: 325)
         .padding()
         .alert(isPresented: $showAlert) {
@@ -182,16 +194,16 @@ struct EventPreviewView: View {
         Button {
             print("Send message")
         } label: {
-            if isSendingMessage { ProgressView() } else { Text("Send message") }
-        }.buttonStyle(.bordered).frame(maxWidth: .infinity, alignment: .center).disabled(isSendingMessage)
+           Label("Send message", systemImage: "message")
+        }
     }
     
     var deleteEventButton: some View {
-        Button {
+        Button(role: .destructive) {
             showDeleteEvent = true
         } label: {
-            if isDeleting { ProgressView() } else { Text("Delete") }
-        }.buttonStyle(.bordered).tint(.red).frame(maxWidth: .infinity, alignment: .center).disabled(isDeleting)
+            Label("Delete", systemImage: "trash")
+        }
     }
     
     var acceptButton: some View {
@@ -321,7 +333,7 @@ struct EventPreviewSkeletonView: View {
             EventUser(id: 5, status: .maybe, isNeedFillIn: false),
         ])
     )).environmentObject(ViewModel(
-        auth: DiscordAuth(user: User(locale: "", verified: true, username: "zabory", global_name: "zabory", avatar: "", id: 1), token: Token(token_type: "", access_token: "token", expires_in: 9999999, refresh_token: "refresh", scope: "local")),
+        auth: DiscordAuth(user: User(locale: "", verified: true, username: "zabory", global_name: "zabory", avatar: "", id: 123456789), token: Token(token_type: "", access_token: "token", expires_in: 9999999, refresh_token: "refresh", scope: "local")),
         discordUserProfiles: [
             DiscordUserProfile(id: 1, username: "user 1", avatar: nil),
             DiscordUserProfile(id: 2, username: "user 2", avatar: ""),
