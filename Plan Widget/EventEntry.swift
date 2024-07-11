@@ -12,11 +12,13 @@ import WidgetKit
 struct EventTimelineEntry: TimelineEntry {
     let date: Date
     let event: Event?
+    let events: [Event]
     let auth: DiscordAuth?
     var userViews: [Int64: AnyView]
     
     init(date: Date, events: [Event], auth: DiscordAuth?) {
         self.date = date
+        self.events = events
         let eventss = events.filter{$0.authorId == auth?.user.id ?? 0 || $0.acceptedUsers.contains{user in user.id == auth?.user.id ?? 0}}.sorted(by: <).filter{Calendar.current.isDateInToday($0.startTime)}
         if(eventss.isEmpty){event = nil} else {event = eventss[0]}
         self.auth = auth
@@ -52,5 +54,27 @@ struct EventTimelineEntry: TimelineEntry {
                 noUser
             }
         })
+    }
+    
+    func upcomingEvents() -> [Date: [Event]] {
+        let calendar = Calendar.current
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        
+        var groupedEvents = [Date: [Event]]()
+        
+        for event in events {
+            // Extract only the day part of the startTime
+            let eventDate = calendar.startOfDay(for: event.startTime)
+            
+            // Group events by the extracted date
+            if groupedEvents[eventDate] != nil {
+                groupedEvents[eventDate]?.append(event)
+            } else {
+                groupedEvents[eventDate] = [event]
+            }
+        }
+        
+        return groupedEvents
     }
 }

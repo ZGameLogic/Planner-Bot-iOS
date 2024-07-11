@@ -70,54 +70,71 @@ struct Provider: AppIntentTimelineProvider {
 }
 
 struct Plan_WidgetEntryView : View {
+    @Environment(\.widgetFamily) var family
     var entry: Provider.Entry
     var event: Event?
+    var events: [Event]
+    var upcoming: [Date: [Event]]
     
     init(entry: Provider.Entry) {
         self.entry = entry
         event = entry.event
+        events = entry.events
+        upcoming = entry.upcomingEvents()
     }
 
     var body: some View {
         ZStack {
-            if entry.auth == nil {
-                ContentUnavailableView("Not logged in", systemImage: "person.fill.xmark")
-            } else if let event = event {
-                VStack(alignment: .leading){
-                    Label(event.title, systemImage: "calendar")
-                    Label(toLocalDateTime(date: event.startTime), systemImage: "clock")
-                    Gauge(value: Double(event.acceptedUsers.count), in: 0...Double(event.count), label: {
-                        HStack {
-                            Label("\(event.acceptedUsers.count)/\(event.count) accepted", systemImage: "person.fill.checkmark")
+            GeometryReader { geometry in
+                HStack {
+                    if entry.auth == nil {
+                        ContentUnavailableView("Not logged in", systemImage: "person.fill.xmark")
+                    } else if let event = event {
+                        VStack(alignment: .leading){
+                            Label(event.title, systemImage: "calendar")
+                            Label(toLocalDateTime(date: event.startTime), systemImage: "clock")
+                            Gauge(value: Double(event.acceptedUsers.count), in: 0...Double(event.count), label: {
+                                HStack {
+                                    Label("\(event.acceptedUsers.count)/\(event.count) accepted", systemImage: "person.fill.checkmark")
+                                    Spacer()
+                                }
+                            }).tint(.primary)
                             Spacer()
                         }
-                    }).tint(.primary)
-//                    HStack{
-//                        ForEach(Array(event.acceptectAndOwnerIds.prefix(6)), id: \.self) { user in
-//                            print(user)
-//                            return entry.userViews[user]
-//                        }
-//                        if event.acceptectAndOwnerIds.count > 7 {
-//                            Text("…")
-//                        } else if event.acceptectAndOwnerIds.count == 7 {
-//                            // If there are exactly 7 elements, display the 7th element
-//                            let user = event.acceptectAndOwnerIds[6]
-//                            entry.userViews[user]
-//                        }
-//    
-//                    }.scaledToFill()
-                    Spacer()
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.75)
+                    } else {
+                        ContentUnavailableView("No upcoming events today", systemImage: "calendar")
+                    }
+                    if family == .systemMedium {
+                        Spacer()
+                        VStack(alignment: .leading){
+                            ForEach(upcoming.keys.sorted().prefix(2), id: \.self) { date in
+                                Text(toLocalTime(date: date)).fontWeight(.light)
+                                ForEach(upcoming[date]!){event in
+                                    HStack {
+                                        Rectangle().fill(Color.black).frame(width: 2)
+                                        Text(event.title).font(.footnote)
+                                    }
+                                }
+                            }
+                            Spacer()
+                        }.lineLimit(1).minimumScaleFactor(0.75).frame(width: geometry.size.width / 2)
+                    }
                 }
-                .lineLimit(1)
-                .minimumScaleFactor(0.75)
-            } else {
-                ContentUnavailableView("No upcoming events", systemImage: "calendar")
             }
         }.containerBackground(
             LinearGradient(colors: [
                 Color(hex: "#6A1B9A"),
                 Color(hex: "#8E24AA")
             ], startPoint: .bottomTrailing, endPoint: .top), for: .widget)
+    }
+    
+    func toLocalTime(date: Date) -> String {
+       let outputDateFormatter = DateFormatter()
+       outputDateFormatter.dateFormat = "EEEE, MMM dd"
+       outputDateFormatter.timeZone = TimeZone.current
+       return outputDateFormatter.string(from: date)
     }
     
     func toLocalDateTime(date: Date) -> String {
@@ -137,8 +154,7 @@ struct Plan_Widget: Widget {
         }
         .configurationDisplayName("Day plans")
         .description("Shows the next upcoming plans for the day.")
-        .supportedFamilies([.systemSmall])
-//        .contentMarginsDisabled()
+        .supportedFamilies([.systemSmall, .systemMedium])
     }
 }
 
@@ -147,6 +163,21 @@ struct Plan_Widget: Widget {
 } timeline: {
     EventTimelineEntry(date: .now, events: [
         Event(id: 1, title: "Hunt: Showdown", notes: "", startTime: .now, count: 3, authorId: 232675572772372481, users: [
+            EventUser(id: 259491864208474115, status: .accepted, isNeedFillIn: false),
+            EventUser(id: 369303799581507585, status: .accepted, isNeedFillIn: false),
+            EventUser(id: 262458179563159563, status: .accepted, isNeedFillIn: false)
+        ]),
+        Event(id: 1, title: "Hunt: Showdown", notes: "", startTime: .now, count: 3, authorId: 232675572772372481, users: [
+            EventUser(id: 259491864208474115, status: .accepted, isNeedFillIn: false),
+            EventUser(id: 369303799581507585, status: .accepted, isNeedFillIn: false),
+            EventUser(id: 262458179563159563, status: .accepted, isNeedFillIn: false)
+        ]),
+        Event(id: 1, title: "Hunt: Showdown", notes: "", startTime: Calendar.current.date(byAdding: .day, value: 5, to: .now)!, count: 3, authorId: 232675572772372481, users: [
+            EventUser(id: 259491864208474115, status: .accepted, isNeedFillIn: false),
+            EventUser(id: 369303799581507585, status: .accepted, isNeedFillIn: false),
+            EventUser(id: 262458179563159563, status: .accepted, isNeedFillIn: false)
+        ]),
+        Event(id: 1, title: "Hunt: Showdown", notes: "", startTime: Calendar.current.date(byAdding: .day, value: 6, to: .now)!, count: 3, authorId: 232675572772372481, users: [
             EventUser(id: 259491864208474115, status: .accepted, isNeedFillIn: false),
             EventUser(id: 369303799581507585, status: .accepted, isNeedFillIn: false),
             EventUser(id: 262458179563159563, status: .accepted, isNeedFillIn: false)

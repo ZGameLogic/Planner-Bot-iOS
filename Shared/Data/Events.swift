@@ -118,7 +118,6 @@ struct Event: Codable, Identifiable, Comparable {
     func isAuthOrAccepted(auth: DiscordAuth) -> Bool {
         auth.user.id == authorId || users.contains{$0.id == auth.user.id && $0.status == .accepted}
     }
-    
 }
 
 struct EventUser: Codable, Identifiable {
