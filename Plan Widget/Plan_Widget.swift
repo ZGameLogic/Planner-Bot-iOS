@@ -113,7 +113,7 @@ struct Plan_WidgetEntryView : View {
                                 Text(toLocalTime(date: date)).fontWeight(.light)
                                 ForEach(upcoming[date]!){event in
                                     HStack {
-                                        Rectangle().fill(Color.black).frame(width: 2)
+                                        Rectangle().fill(Color.black).frame(width: 2, height: 10)
                                         Text(event.title).font(.footnote)
                                     }
                                 }

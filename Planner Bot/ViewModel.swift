@@ -229,9 +229,9 @@ class ViewModel: ObservableObject {
         if let stringAuth = KeyvaultService.retrieveFromKeychain(key: "com.zgamelogic.auth") {
             do {
                 let data = try JSONDecoder().decode(DiscordAuth.self, from: stringAuth.data(using: .utf8)!)
-                auth = data
-                loading.isFetchingAuth = false
-                refresh()
+                self.auth = data
+                self.loading.isFetchingAuth = false
+                self.refresh()
             } catch {
                 self.auth = nil
                 loading.isFetchingAuth = false

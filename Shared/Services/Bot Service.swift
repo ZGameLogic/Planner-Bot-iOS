@@ -8,7 +8,7 @@
 import Foundation
 struct BotService {
     #if targetEnvironment(simulator)
-    static let BASE_URL = "http://localhost:2001"
+    static let BASE_URL = "http://192.168.1.176:2001"
     #else
     static let BASE_URL = "https://zgamelogic.com:2000"
     #endif
@@ -87,6 +87,21 @@ struct BotService {
 
         semaphore.wait()
         return result
+    }
+    
+    static func registrationEndpoint(token: String, device: String) async throws {
+        guard let url = URL(string: BASE_URL + "/devices/register/\(device)/\(token)") else { return }
+        print(device)
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+//        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+//        let result = try await URLSession.shared.data(for: request)
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print(error)
+                return
+            }
+        }.resume()
     }
     
     static func fetchDiscordServerRoles(completion: @escaping (Result<[DiscordRoleProfile], Error>) -> Void){
