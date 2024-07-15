@@ -289,6 +289,10 @@ struct Loading: Equatable {
     var isFetchingRoleList: Bool
     var isFetchingUserEvents: Bool
     
+    var isAnything: Bool {
+        isFetchingAuth || isFetchingUserList || isFetchingRoleList || isFetchingUserEvents
+    }
+    
     init() {
         isFetchingAuth = false
         isFetchingUserList = false

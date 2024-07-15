@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct PlannerBotView: View {
+    @Environment(\.scenePhase) private var scenePhase
     @EnvironmentObject var viewModel: ViewModel
+    
     @State var showLogin = false
     @State var isProfilePresented = false
     @State var showAddPlan = false
@@ -79,6 +81,10 @@ struct PlannerBotView: View {
         .onAppear {
             if(viewModel.auth == nil){
                 showLogin = true
+            }
+        }.onChange(of: scenePhase) { oldPhase, newPhase in
+            if(oldPhase == .inactive && newPhase == .active && !viewModel.loading.isAnything && !viewModel.isWebSocketConnected){
+                viewModel.refresh()
             }
         }
     }
