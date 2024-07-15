@@ -18,8 +18,6 @@ struct PlannerBotView: View {
             ScrollView {
                 if(viewModel.loading.isFetchingUserEvents){
                     EventPreviewSkeletonView()
-                    EventPreviewSkeletonView()
-                    EventPreviewSkeletonView()
                 } else if(!viewModel.loading.isFetchingUserEvents && viewModel.events.isEmpty){
                     ContentUnavailableView("No events found", systemImage: "calendar.badge.plus", description: Text("no_events"))
                 } else {
@@ -42,13 +40,28 @@ struct PlannerBotView: View {
                                 .padding([.top, .trailing, .bottom])
                         }
                     } else {
-                        Button(action: {
-                            isProfilePresented.toggle()
-                        }) {
-                            CachedImage(url: "https://cdn.discordapp.com/avatars/\(viewModel.auth!.user.id)/\(viewModel.auth!.user.avatar).png")
-                                .frame(width: 40, height: 40)
-                                .cornerRadius(20)
-                        }
+                        
+                            Button(action: {
+                                isProfilePresented.toggle()
+                            }) {
+                                ZStack(alignment: .bottomTrailing) {
+                                    CachedImage(url: "https://cdn.discordapp.com/avatars/\(viewModel.auth!.user.id)/\(viewModel.auth!.user.avatar).png")
+                                        .frame(width: 40, height: 40)
+                                        .cornerRadius(20).overlay(
+                                            ZStack {
+                                                Circle()
+                                                    .fill(Color(UIColor.systemBackground))
+                                                    .frame(width: 17, height: 17)
+                                                    .offset(x: 15, y: 15)
+                                                Circle()
+                                                    .fill(.green).frame(width: 10, height: 10)
+                                                    .offset(x: 15, y: 15)
+                                            }.frame(width: 40, height: 40)
+                                                .scaleEffect(viewModel.isWebSocketConnected ? 1 : 0, anchor: .bottomTrailing)
+                                            .animation(.easeInOut(duration: 0.3), value: viewModel.isWebSocketConnected)
+                                        )
+                                }.frame(width: 40, height: 40)
+                            }
                     }
                 }
                 ToolbarItem {
@@ -67,7 +80,6 @@ struct PlannerBotView: View {
             if(viewModel.auth == nil){
                 showLogin = true
             }
-            viewModel.refresh()
         }
     }
 }

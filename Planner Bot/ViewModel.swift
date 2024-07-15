@@ -21,7 +21,6 @@ class ViewModel: ObservableObject {
                         _ = KeyvaultService.storeInKeychain(key: "com.zgamelogic.auth", value: jsonString)
                     }
                 } catch {}
-                websocketConnect()
             } else {
                 _ = KeyvaultService.deleteFromKeychain(key: "com.zgamelogic.auth")
             }
@@ -32,6 +31,7 @@ class ViewModel: ObservableObject {
     @Published var discordRoleProfiles: [DiscordRoleProfile] = []
     @Published var events: [Event] = []
     @Published var loading: Loading = Loading()
+    @Published var isWebSocketConnected: Bool = false
     
     let deviceUUID: String
     
@@ -79,8 +79,14 @@ class ViewModel: ObservableObject {
         webSocketTask?.receive { [weak self] result in
             guard let self = self else { return }
             switch result {
-            case .failure(_): break
+            case .failure(_):
+                DispatchGroup().notify(queue: .main) {
+                    self.isWebSocketConnected = false
+                }
             case .success(let message):
+                DispatchGroup().notify(queue: .main) {
+                    self.isWebSocketConnected = true
+                }
                 switch message {
                 case .string(let text):
                     print(text)
@@ -119,6 +125,7 @@ class ViewModel: ObservableObject {
         guard let auth = auth else {
             return
         }
+        self.loading.isFetchingUserEvents = true
         BotService.fetchUserEvents(token: auth.token.access_token, device: deviceUUID) { result in
             switch(result){
             case .success(let data):
@@ -188,6 +195,7 @@ class ViewModel: ObservableObject {
             self.discordUserProfiles = []
             self.events = []
             _ = KeyvaultService.deleteFromKeychain(key: "com.zgamelogic.auth")
+            self.isWebSocketConnected = false
         }
         webSocketTask?.cancel(with: .goingAway, reason: nil)
     }
@@ -214,13 +222,27 @@ class ViewModel: ObservableObject {
     
     private func websocketConnect(){
         if let auth = auth {
-            webSocketTask?.cancel(with: .goingAway, reason: nil)
-            var request = URLRequest(url: URL(string: "\(BotService.BASE_URL)/planner")!)
-            request.addValue(deviceUUID, forHTTPHeaderField: "device")
-            request.addValue(auth.token.access_token, forHTTPHeaderField: "token")
-            webSocketTask = URLSession(configuration: .default).webSocketTask(with: request)
-            webSocketTask?.resume()
-            receiveMessage()
+            cancelWebSocket {
+                self.webSocketTask?.cancel(with: .goingAway, reason: nil)
+                var request = URLRequest(url: URL(string: "\(BotService.BASE_URL)/planner")!)
+                request.addValue(self.deviceUUID, forHTTPHeaderField: "device")
+                request.addValue(auth.token.access_token, forHTTPHeaderField: "token")
+                self.webSocketTask = URLSession(configuration: .default).webSocketTask(with: request)
+                self.webSocketTask?.resume()
+                DispatchGroup().notify(queue: .main) {
+                    print("websocket connect true")
+                    self.isWebSocketConnected = true
+                }
+                self.receiveMessage()
+            }
+        }
+    }
+    
+    private func cancelWebSocket(completion: @escaping () -> Void) {
+        webSocketTask?.cancel(with: .goingAway, reason: nil)
+        webSocketTask = nil
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            completion()
         }
     }
     
@@ -230,15 +252,11 @@ class ViewModel: ObservableObject {
             do {
                 let data = try JSONDecoder().decode(DiscordAuth.self, from: stringAuth.data(using: .utf8)!)
                 self.auth = data
-                self.loading.isFetchingAuth = false
-                self.refresh()
             } catch {
                 self.auth = nil
-                loading.isFetchingAuth = false
                 print("Unable to decode data for auth")
             }
         } else {
-            loading.isFetchingAuth = false
             self.auth = nil
         }
         if let auth = auth {
@@ -248,7 +266,10 @@ class ViewModel: ObservableObject {
                     DispatchGroup().notify(queue: .main) {
                         self.auth = data
                         self.loading.isFetchingAuth = false
-                        self.refresh()
+                        self.fetchServerUsers()
+                        self.fetchServerRoles()
+                        self.fetchUserEvents()
+                        self.websocketConnect()
                     }
                 case .failure(let error):
                     self.auth = nil
