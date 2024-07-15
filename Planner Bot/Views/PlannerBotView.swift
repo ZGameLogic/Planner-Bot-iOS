@@ -18,7 +18,7 @@ struct PlannerBotView: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                if(viewModel.loading.isFetchingUserEvents){
+                if(viewModel.loading.isFetchingUserEvents && viewModel.events.isEmpty){
                     EventPreviewSkeletonView()
                 } else if(!viewModel.loading.isFetchingUserEvents && viewModel.events.isEmpty){
                     ContentUnavailableView("No events found", systemImage: "calendar.badge.plus", description: Text("no_events"))
