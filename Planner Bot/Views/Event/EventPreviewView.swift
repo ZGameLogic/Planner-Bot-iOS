@@ -55,6 +55,10 @@ struct EventPreviewView: View {
                         }
                     }
                 }
+                HStack {
+                    authorListView(viewModel.getUserById(userId: event.authorId))
+                    Text(viewModel.getUserById(userId: event.authorId)?.username ?? "Unknown")
+                }.frame(height: 0).padding([.bottom], 6)
                 Label(toLocalTime(date: event.startTime), systemImage: "clock")
                 if(!event.notes.isEmpty){
                     Label(event.notes, systemImage: "note.text")
@@ -169,6 +173,23 @@ struct EventPreviewView: View {
                 noUser
             }
             Text(viewModel.getUserById(userId: user.id)?.username ?? "Unknown User")
+        }
+    }
+    
+    func authorListView(_ user: DiscordUserProfile?) -> some View {
+        let noUser = AnyView(Image(systemName: "person.fill")
+            .resizable()
+            .scaledToFit()
+            .frame(width: 20, height: 20))
+        
+        return HStack {
+            if let user = user, let avatar = user.avatar {
+                CachedImage(url: "https://cdn.discordapp.com/avatars/\(user.id)/\(avatar).png", loadingView: noUser)
+                    .frame(width: 20, height: 20)
+                    .cornerRadius(10)
+            } else {
+                noUser
+            }
         }
     }
     
@@ -305,8 +326,9 @@ struct EventPreviewSkeletonView: View {
     var body: some View {
         GroupBox(label: Text("Hunt Showdown").font(.title), content: {
             VStack(alignment: .leading){
+                Label("zabory", systemImage: "note.text")
                 Label("Thursday 4/3 at 8:00pm", systemImage: "clock")
-                Label("Event notes", systemImage: "note.text")
+                Label("Event notes event", systemImage: "note.text")
                 Gauge(value: 0.0, in: 0...5, label: {
                     HStack {
                         Label("0/3 accepted", systemImage: "person.fill.checkmark")
@@ -325,14 +347,14 @@ struct EventPreviewSkeletonView: View {
 
 #Preview {
     EventPreviewView(event: Binding.constant(
-        Event(id: 1, title: "GTFO", notes: "Lets win one boys", startTime: Date(), count: 3, authorId: 123456789, users: [
+        Event(id: 1, title: "GTFO", notes: "Lets win one boys", startTime: Date(), count: 3, authorId: 232675572772372481, users: [
             EventUser(id: 1, status: .deciding, isNeedFillIn: false),
             EventUser(id: 2, status: .deciding, isNeedFillIn: false),
             EventUser(id: 3, status: .deciding, isNeedFillIn: false),
             EventUser(id: 4, status: .declined, isNeedFillIn: false),
             EventUser(id: 5, status: .maybe, isNeedFillIn: false),
         ])
-    )).environmentObject(ViewModel(
+    ), showUsers: true).environmentObject(ViewModel(
         auth: DiscordAuth(user: User(locale: "", verified: true, username: "zabory", global_name: "zabory", avatar: "", id: 123456789), token: Token(token_type: "", access_token: "token", expires_in: 9999999, refresh_token: "refresh", scope: "local")),
         discordUserProfiles: [
             DiscordUserProfile(id: 1, username: "user 1", avatar: nil),
@@ -340,6 +362,7 @@ struct EventPreviewSkeletonView: View {
             DiscordUserProfile(id: 3, username: "user 3", avatar: ""),
             DiscordUserProfile(id: 4, username: "user 4", avatar: ""),
             DiscordUserProfile(id: 5, username: "user 5", avatar: ""),
+            DiscordUserProfile(id: 232675572772372481, username: "user3 6", avatar: "5c2791cbabc9b54b2c852d1dc2bb820b"),
         ],
         events: []
     ))
