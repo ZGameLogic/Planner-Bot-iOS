@@ -9,6 +9,8 @@ import SwiftUI
 
 struct EventPreviewView: View {
     @EnvironmentObject var viewModel: ViewModel
+    
+    @State var pillEnabled: Bool = UserDefaults.standard.bool(forKey: "pill_enabled")
     @Binding var event: Event
     @State var showUsers = false
     
@@ -37,9 +39,10 @@ struct EventPreviewView: View {
         buttons[Buttons.deleteEvent.rawValue] || buttons[Buttons.sendMessage.rawValue]
     }
     
-    init(event: Binding<Event>, showUsers: Bool = false) {
+    init(event: Binding<Event>, showUsers: Bool = false, pillEnabled: Bool = false) {
         self._event = event
         self.showUsers = showUsers
+        self.pillEnabled = pillEnabled
     }
     
     var body: some View {
@@ -74,7 +77,16 @@ struct EventPreviewView: View {
                 if(showUsers){
                     Label("Invitees", systemImage: "person.text.rectangle.fill")
                     ForEach(event.users.sorted{$0.status < $1.status}){user in
-                        userListView(user).foregroundStyle(user.statusColor)
+                        HStack {
+                            if(pillEnabled){
+                                userListView(user)
+                                if(user.status != .deciding) {
+                                    TextTint(text: user.status.toString(), color: user.statusColor).padding([.leading], 4)
+                                }
+                            } else {
+                                userListView(user).foregroundStyle(user.statusColor)
+                            }
+                        }
                     }
                 } else {
                     ScrollView(.horizontal) {
@@ -348,13 +360,36 @@ struct EventPreviewSkeletonView: View {
 #Preview {
     EventPreviewView(event: Binding.constant(
         Event(id: 1, title: "GTFO", notes: "Lets win one boys", startTime: Date(), count: 3, authorId: 232675572772372481, users: [
-            EventUser(id: 1, status: .deciding, isNeedFillIn: false),
+            EventUser(id: 1, status: .accepted, isNeedFillIn: false),
             EventUser(id: 2, status: .deciding, isNeedFillIn: false),
             EventUser(id: 3, status: .deciding, isNeedFillIn: false),
             EventUser(id: 4, status: .declined, isNeedFillIn: false),
             EventUser(id: 5, status: .maybe, isNeedFillIn: false),
         ])
     ), showUsers: true).environmentObject(ViewModel(
+        auth: DiscordAuth(user: User(locale: "", verified: true, username: "zabory", global_name: "zabory", avatar: "", id: 123456789), token: Token(token_type: "", access_token: "token", expires_in: 9999999, refresh_token: "refresh", scope: "local")),
+        discordUserProfiles: [
+            DiscordUserProfile(id: 1, username: "user 1", avatar: nil),
+            DiscordUserProfile(id: 2, username: "user 2", avatar: ""),
+            DiscordUserProfile(id: 3, username: "user 3", avatar: ""),
+            DiscordUserProfile(id: 4, username: "user 4", avatar: ""),
+            DiscordUserProfile(id: 5, username: "user 5", avatar: ""),
+            DiscordUserProfile(id: 232675572772372481, username: "user3 6", avatar: "5c2791cbabc9b54b2c852d1dc2bb820b"),
+        ],
+        events: []
+    ))
+}
+
+#Preview {
+    EventPreviewView(event: Binding.constant(
+        Event(id: 1, title: "GTFO", notes: "Lets win one boys", startTime: Date(), count: 3, authorId: 232675572772372481, users: [
+            EventUser(id: 1, status: .accepted, isNeedFillIn: false),
+            EventUser(id: 2, status: .deciding, isNeedFillIn: false),
+            EventUser(id: 3, status: .deciding, isNeedFillIn: false),
+            EventUser(id: 4, status: .declined, isNeedFillIn: false),
+            EventUser(id: 5, status: .maybe, isNeedFillIn: false),
+        ])
+    ), showUsers: true, pillEnabled: true).environmentObject(ViewModel(
         auth: DiscordAuth(user: User(locale: "", verified: true, username: "zabory", global_name: "zabory", avatar: "", id: 123456789), token: Token(token_type: "", access_token: "token", expires_in: 9999999, refresh_token: "refresh", scope: "local")),
         discordUserProfiles: [
             DiscordUserProfile(id: 1, username: "user 1", avatar: nil),

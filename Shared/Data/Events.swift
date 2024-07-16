@@ -237,6 +237,23 @@ enum Status: String, Codable, Comparable {
     case waitlisted = "WAITLISTED"
     case fillIn = "FILLINED"
     case declined = "DECLINED"
+    
+    func toString() -> String {
+        switch(self) {
+        case .deciding:
+            "Deciding"
+        case .accepted:
+            "Accepted"
+        case .maybe:
+            "Maybe"
+        case .waitlisted:
+            "Wait-listed"
+        case .fillIn:
+            "Filled in"
+        case .declined:
+            "Declined"
+        }
+    }
 }
 
 struct PlanActionResult: Codable {

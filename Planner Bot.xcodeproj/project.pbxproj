@@ -23,6 +23,8 @@
 		B5497DB12C398A7F000BCB0F /* Cached Image Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5963B2C2BFFDDFE00C6C468 /* Cached Image Service.swift */; };
 		B5497DB42C39ADA4000BCB0F /* EventEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5497DB22C398B7A000BCB0F /* EventEntry.swift */; };
 		B56C7FD62C040DC1001DA721 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56C7FD52C040DC1001DA721 /* Events.swift */; };
+		B56F24B92C4710EE000A73B2 /* Text Tint.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56F24B82C4710EE000A73B2 /* Text Tint.swift */; };
+		B56F24BB2C471769000A73B2 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B56F24BA2C471769000A73B2 /* Settings.bundle */; };
 		B58598FE2C0807CF002238CB /* CreateEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58598FD2C0807CF002238CB /* CreateEventView.swift */; };
 		B5877C7E2C0503F3009759B2 /* EventPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5877C7D2C0503F3009759B2 /* EventPreviewView.swift */; };
 		B5963B1E2BFFC7F900C6C468 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5963B1D2BFFC7F900C6C468 /* ViewModel.swift */; };
@@ -78,6 +80,8 @@
 		B5497DB22C398B7A000BCB0F /* EventEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventEntry.swift; sourceTree = "<group>"; };
 		B5497DB52C3A4A54000BCB0F /* Plan WidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Plan WidgetExtension.entitlements"; sourceTree = "<group>"; };
 		B56C7FD52C040DC1001DA721 /* Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
+		B56F24B82C4710EE000A73B2 /* Text Tint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Text Tint.swift"; sourceTree = "<group>"; };
+		B56F24BA2C471769000A73B2 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		B58598FD2C0807CF002238CB /* CreateEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventView.swift; sourceTree = "<group>"; };
 		B5877C7D2C0503F3009759B2 /* EventPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPreviewView.swift; sourceTree = "<group>"; };
 		B594304D2C0F84F10002F9A3 /* Planner-Bot-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Planner-Bot-Info.plist"; sourceTree = SOURCE_ROOT; };
@@ -149,6 +153,14 @@
 			path = "Plan Widget";
 			sourceTree = "<group>";
 		};
+		B56F24B72C4710D0000A73B2 /* misc */ = {
+			isa = PBXGroup;
+			children = (
+				B56F24B82C4710EE000A73B2 /* Text Tint.swift */,
+			);
+			path = misc;
+			sourceTree = "<group>";
+		};
 		B5877C7C2C050304009759B2 /* Event */ = {
 			isa = PBXGroup;
 			children = (
@@ -171,6 +183,7 @@
 		B5963B242BFFD02800C6C468 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B56F24B72C4710D0000A73B2 /* misc */,
 				B5334B8F2C35AB9500595285 /* Modifiers */,
 				B5877C7C2C050304009759B2 /* Event */,
 				B5963B2E2BFFDEDF00C6C468 /* User */,
@@ -240,6 +253,7 @@
 				B5E9614F2BFF93BA006FDDD1 /* Assets.xcassets */,
 				B5E961512BFF93BA006FDDD1 /* Preview Content */,
 				B5C85B352C35D9D0008A501F /* Localizable.xcstrings */,
+				B56F24BA2C471769000A73B2 /* Settings.bundle */,
 			);
 			path = "Planner Bot";
 			sourceTree = "<group>";
@@ -343,6 +357,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B56F24BB2C471769000A73B2 /* Settings.bundle in Resources */,
 				B5C85B362C35D9D0008A501F /* Localizable.xcstrings in Resources */,
 				B5E961532BFF93BA006FDDD1 /* Preview Assets.xcassets in Resources */,
 				B5E961502BFF93BA006FDDD1 /* Assets.xcassets in Resources */,
@@ -385,6 +400,7 @@
 				B5877C7E2C0503F3009759B2 /* EventPreviewView.swift in Sources */,
 				B5963B212BFFC83800C6C468 /* Keyvault Service.swift in Sources */,
 				B5963B232BFFC84900C6C468 /* Bot Service.swift in Sources */,
+				B56F24B92C4710EE000A73B2 /* Text Tint.swift in Sources */,
 				B5963B2A2BFFD40000C6C468 /* PlannerBotView.swift in Sources */,
 				B5334B912C35ABA200595285 /* Shimmer.swift in Sources */,
 				B58598FE2C0807CF002238CB /* CreateEventView.swift in Sources */,
