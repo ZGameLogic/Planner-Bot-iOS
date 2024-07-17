@@ -94,8 +94,6 @@ struct BotService {
         print(device)
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
-//        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-//        let result = try await URLSession.shared.data(for: request)
         URLSession.shared.dataTask(with: request) { data, response, error in
             if let error = error {
                 print(error)
@@ -291,6 +289,35 @@ struct BotService {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue(auth.token.access_token, forHTTPHeaderField: "token")
         request.setValue(deviceUUID, forHTTPHeaderField: "device")
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            guard let data = data else {
+                completion(.failure(URLError(.badServerResponse)))
+                return
+            }
+            do {
+                let decodedData = try JSONDecoder().decode(PlanActionResult.self, from: data)
+                completion(.success(decodedData))
+            } catch {
+                completion(.failure(error))
+            }
+        }.resume()
+    }
+    
+    static func sendMessage(auth: DiscordAuth, deviceUUID: String, event: Event, message: String, completion: @escaping (Result<PlanActionResult, Error>) -> Void) {
+        print("Service sending message")
+        let urlComponents = URLComponents(string: "\(BASE_URL)/plans/\(event.id)/message")!
+        let url = urlComponents.url!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("text/plain", forHTTPHeaderField: "Content-Type")
+        request.setValue(auth.token.access_token, forHTTPHeaderField: "token")
+        request.setValue(deviceUUID, forHTTPHeaderField: "device")
+        request.httpBody = message.data(using: .utf8)
         
         URLSession.shared.dataTask(with: request) { data, response, error in
             if let error = error {

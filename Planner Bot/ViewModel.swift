@@ -220,6 +220,11 @@ class ViewModel: ObservableObject {
         BotService.deletePlan(auth: auth, deviceUUID: deviceUUID, event: event, completion: completion)
     }
     
+    func sendMessage(_ event: Event, _ message: String, completion: @escaping (Result<PlanActionResult, Error>) -> Void){
+        guard let auth = auth else { return }
+        BotService.sendMessage(auth: auth, deviceUUID: deviceUUID, event: event, message: message, completion: completion)
+    }
+    
     private func websocketConnect(){
         if let auth = auth {
             cancelWebSocket {

@@ -33,6 +33,9 @@
         }
       }
     },
+    "Cancel" : {
+
+    },
     "Delete" : {
 
     },
@@ -158,6 +161,9 @@
     "Select invitees" : {
 
     },
+    "Send" : {
+
+    },
     "Send message" : {
 
     },
@@ -165,6 +171,9 @@
 
     },
     "Thursday 4/3 at 8:00pm" : {
+
+    },
+    "Type your message here" : {
 
     },
     "Unable to do plan action" : {

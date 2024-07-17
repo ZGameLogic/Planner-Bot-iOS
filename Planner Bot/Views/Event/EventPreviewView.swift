@@ -27,6 +27,9 @@ struct EventPreviewView: View {
     @State var showAlert = false
     @State var alertMessage = ""
     
+    @State var showMessageAlert = false
+    @State var message = ""
+    
     @State var showDeleteEvent = false
     
     var isDoing: Bool {
@@ -53,7 +56,7 @@ struct EventPreviewView: View {
                     Spacer()
                     if showMenuButton {
                         Menu("", systemImage: "list.dash") {
-                            sendMessageButton.disabled(true)
+                            sendMessageButton
                             deleteEventButton
                         }
                     }
@@ -150,6 +153,25 @@ struct EventPreviewView: View {
                 },
                 secondaryButton: .cancel()
             )
+        }.alert("Send message", isPresented: $showAlert) {
+            TextField("Type your message here", text: $message)
+            Button("Send"){
+                viewModel.sendMessage(event, message) { result in
+                    switch(result){
+                    case .success(let data):
+                        if(!data.success){
+                            alertMessage = data.message
+                            showAlert = true
+                        }
+                    case .failure(let error):
+                        print(error)
+                    }
+                }
+                message = ""
+            }
+            Button("Cancel", role: .cancel) {
+                message = ""
+            }
         }
     }
     
@@ -225,7 +247,7 @@ struct EventPreviewView: View {
     
     var sendMessageButton: some View {
         Button {
-            print("Send message")
+            showAlert.toggle()
         } label: {
            Label("Send message", systemImage: "message")
         }
