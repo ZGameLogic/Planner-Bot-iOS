@@ -23,8 +23,10 @@ struct PlannerBotView: View {
                 } else if(!viewModel.loading.isFetchingUserEvents && viewModel.events.isEmpty){
                     ContentUnavailableView("No events found", systemImage: "calendar.badge.plus", description: Text("no_events"))
                 } else {
-                    ForEach($viewModel.events){$event in
-                        EventPreviewView(event: $event)
+                    LazyVGrid(columns: [GridItem(.adaptive(minimum: 325))], spacing: 16) {
+                        ForEach($viewModel.events) { $event in
+                            EventPreviewView(event: $event)
+                        }
                     }
                 }
             }.navigationTitle("Upcoming events")
