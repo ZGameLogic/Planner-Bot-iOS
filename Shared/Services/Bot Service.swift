@@ -91,7 +91,6 @@ struct BotService {
     
     static func registrationEndpoint(token: String, device: String) async throws {
         guard let url = URL(string: BASE_URL + "/devices/register/\(device)/\(token)") else { return }
-        print(device)
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         URLSession.shared.dataTask(with: request) { data, response, error in
@@ -309,7 +308,6 @@ struct BotService {
     }
     
     static func sendMessage(auth: DiscordAuth, deviceUUID: String, event: Event, message: String, completion: @escaping (Result<PlanActionResult, Error>) -> Void) {
-        print("Service sending message")
         let urlComponents = URLComponents(string: "\(BASE_URL)/plans/\(event.id)/message")!
         let url = urlComponents.url!
         var request = URLRequest(url: url)

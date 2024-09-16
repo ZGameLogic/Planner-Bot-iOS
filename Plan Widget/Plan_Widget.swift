@@ -57,6 +57,12 @@ struct Provider: AppIntentTimelineProvider {
             let result = BotService.reloginSyncronous(auth: auth, deviceUUID: uuid)
                 switch(result) {
                 case .success(let data):
+                    do {
+                        let jsonData = try JSONEncoder().encode(data)
+                        if let jsonString = String(data: jsonData, encoding: .utf8) {
+                            _ = KeyvaultService.storeInKeychain(key: "com.zgamelogic.auth", value: jsonString)
+                        }
+                    } catch {}
                     return data
                 case .failure(let error):
                     print(error)
@@ -93,12 +99,16 @@ struct Plan_WidgetEntryView : View {
                         VStack(alignment: .leading){
                             Label(event.title, systemImage: "calendar")
                             Label(toLocalDateTime(date: event.startTime), systemImage: "clock")
-                            Gauge(value: Double(event.acceptedUsers.count), in: 0...Double(event.count), label: {
-                                HStack {
-                                    Label("\(event.acceptedUsers.count)/\(event.count) accepted", systemImage: "person.fill.checkmark")
-                                    Spacer()
-                                }
-                            }).tint(.primary)
+                            if(event.count != -1){
+                                Gauge(value: Double(event.acceptedUsers.count), in: 0...Double(event.count), label: {
+                                    HStack {
+                                        Label("\(event.acceptedUsers.count)/\(event.count) accepted", systemImage: "person.fill.checkmark")
+                                        Spacer()
+                                    }
+                                }).tint(.primary)
+                            } else {
+                                Label("\(event.acceptedUsers.count) accepted", systemImage: "person.fill.checkmark")
+                            }
                             Spacer()
                         }
                         .lineLimit(1)
@@ -158,11 +168,11 @@ struct Plan_Widget: Widget {
     }
 }
 
-#Preview(as: .systemSmall) {
+#Preview(as: .systemMedium) {
     Plan_Widget()
 } timeline: {
     EventTimelineEntry(date: .now, events: [
-        Event(id: 1, title: "Hunt: Showdown", notes: "", startTime: .now, count: 3, authorId: 232675572772372481, users: [
+        Event(id: 1, title: "Hunt: Showdown", notes: "", startTime: .now, count: -1, authorId: 232675572772372481, users: [
             EventUser(id: 259491864208474115, status: .accepted, isNeedFillIn: false),
             EventUser(id: 369303799581507585, status: .accepted, isNeedFillIn: false),
             EventUser(id: 262458179563159563, status: .accepted, isNeedFillIn: false)

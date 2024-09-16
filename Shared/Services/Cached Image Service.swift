@@ -98,6 +98,5 @@ struct CachedImage: View {
         // Cache and set the image
         cache.setObject(image, forKey: url as NSURL)
         self.image = Image(uiImage: image)
-        print(image.size)
     }
 }

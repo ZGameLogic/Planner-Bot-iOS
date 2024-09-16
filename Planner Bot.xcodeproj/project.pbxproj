@@ -25,6 +25,17 @@
 		B56C7FD62C040DC1001DA721 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56C7FD52C040DC1001DA721 /* Events.swift */; };
 		B56F24B92C4710EE000A73B2 /* Text Tint.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56F24B82C4710EE000A73B2 /* Text Tint.swift */; };
 		B56F24BB2C471769000A73B2 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B56F24BA2C471769000A73B2 /* Settings.bundle */; };
+		B57D8D1E2C486CF500B55ABD /* Plan_WatchOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57D8D1D2C486CF500B55ABD /* Plan_WatchOSApp.swift */; };
+		B57D8D202C486CF500B55ABD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57D8D1F2C486CF500B55ABD /* ContentView.swift */; };
+		B57D8D222C486CF600B55ABD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B57D8D212C486CF600B55ABD /* Assets.xcassets */; };
+		B57D8D252C486CF600B55ABD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B57D8D242C486CF600B55ABD /* Preview Assets.xcassets */; };
+		B57D8D282C486CF600B55ABD /* Plan WatchOS Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = B57D8D1B2C486CF500B55ABD /* Plan WatchOS Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		B57D8D2E2C486D6800B55ABD /* Discord User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5963B322BFFE4AB00C6C468 /* Discord User.swift */; };
+		B57D8D2F2C486D6A00B55ABD /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56C7FD52C040DC1001DA721 /* Events.swift */; };
+		B57D8D302C486D6D00B55ABD /* Keyvault Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5963B202BFFC83800C6C468 /* Keyvault Service.swift */; };
+		B57D8D312C486D7000B55ABD /* Bot Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5963B222BFFC84900C6C468 /* Bot Service.swift */; };
+		B57D8D322C486D7400B55ABD /* Cached Image Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5963B2C2BFFDDFE00C6C468 /* Cached Image Service.swift */; };
+		B57D8D332C486D7B00B55ABD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5963B272BFFD07300C6C468 /* Constants.swift */; };
 		B58598FE2C0807CF002238CB /* CreateEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58598FD2C0807CF002238CB /* CreateEventView.swift */; };
 		B5877C7E2C0503F3009759B2 /* EventPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5877C7D2C0503F3009759B2 /* EventPreviewView.swift */; };
 		B5963B1E2BFFC7F900C6C468 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5963B1D2BFFC7F900C6C468 /* ViewModel.swift */; };
@@ -51,6 +62,13 @@
 			remoteGlobalIDString = B5497D942C39898E000BCB0F;
 			remoteInfo = "Plan WidgetExtension";
 		};
+		B57D8D262C486CF600B55ABD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B5E961402BFF93B9006FDDD1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B57D8D1A2C486CF500B55ABD;
+			remoteInfo = "Plan WatchOS Watch App";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -63,6 +81,17 @@
 				B5497DA72C39898F000BCB0F /* Plan WidgetExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B57D8D292C486CF600B55ABD /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				B57D8D282C486CF600B55ABD /* Plan WatchOS Watch App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -82,6 +111,12 @@
 		B56C7FD52C040DC1001DA721 /* Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
 		B56F24B82C4710EE000A73B2 /* Text Tint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Text Tint.swift"; sourceTree = "<group>"; };
 		B56F24BA2C471769000A73B2 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		B57D8D1B2C486CF500B55ABD /* Plan WatchOS Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Plan WatchOS Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B57D8D1D2C486CF500B55ABD /* Plan_WatchOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plan_WatchOSApp.swift; sourceTree = "<group>"; };
+		B57D8D1F2C486CF500B55ABD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		B57D8D212C486CF600B55ABD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B57D8D242C486CF600B55ABD /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		B57D8D2D2C486D0800B55ABD /* Plan WatchOS Watch App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Plan WatchOS Watch App.entitlements"; sourceTree = "<group>"; };
 		B58598FD2C0807CF002238CB /* CreateEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventView.swift; sourceTree = "<group>"; };
 		B5877C7D2C0503F3009759B2 /* EventPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPreviewView.swift; sourceTree = "<group>"; };
 		B594304D2C0F84F10002F9A3 /* Planner-Bot-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Planner-Bot-Info.plist"; sourceTree = SOURCE_ROOT; };
@@ -110,6 +145,13 @@
 			files = (
 				B5497D9A2C39898E000BCB0F /* SwiftUI.framework in Frameworks */,
 				B5497D982C39898E000BCB0F /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B57D8D182C486CF500B55ABD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -159,6 +201,26 @@
 				B56F24B82C4710EE000A73B2 /* Text Tint.swift */,
 			);
 			path = misc;
+			sourceTree = "<group>";
+		};
+		B57D8D1C2C486CF500B55ABD /* Plan WatchOS Watch App */ = {
+			isa = PBXGroup;
+			children = (
+				B57D8D2D2C486D0800B55ABD /* Plan WatchOS Watch App.entitlements */,
+				B57D8D1D2C486CF500B55ABD /* Plan_WatchOSApp.swift */,
+				B57D8D1F2C486CF500B55ABD /* ContentView.swift */,
+				B57D8D212C486CF600B55ABD /* Assets.xcassets */,
+				B57D8D232C486CF600B55ABD /* Preview Content */,
+			);
+			path = "Plan WatchOS Watch App";
+			sourceTree = "<group>";
+		};
+		B57D8D232C486CF600B55ABD /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				B57D8D242C486CF600B55ABD /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		B5877C7C2C050304009759B2 /* Event */ = {
@@ -227,6 +289,7 @@
 				B5963B1F2BFFC82100C6C468 /* Shared */,
 				B5E9614A2BFF93B9006FDDD1 /* Planner Bot */,
 				B5497D9B2C39898E000BCB0F /* Plan Widget */,
+				B57D8D1C2C486CF500B55ABD /* Plan WatchOS Watch App */,
 				B5497D962C39898E000BCB0F /* Frameworks */,
 				B5E961492BFF93B9006FDDD1 /* Products */,
 			);
@@ -237,6 +300,7 @@
 			children = (
 				B5E961482BFF93B9006FDDD1 /* Planner Bot.app */,
 				B5497D952C39898E000BCB0F /* Plan WidgetExtension.appex */,
+				B57D8D1B2C486CF500B55ABD /* Plan WatchOS Watch App.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -286,6 +350,23 @@
 			productReference = B5497D952C39898E000BCB0F /* Plan WidgetExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
+		B57D8D1A2C486CF500B55ABD /* Plan WatchOS Watch App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B57D8D2C2C486CF600B55ABD /* Build configuration list for PBXNativeTarget "Plan WatchOS Watch App" */;
+			buildPhases = (
+				B57D8D172C486CF500B55ABD /* Sources */,
+				B57D8D182C486CF500B55ABD /* Frameworks */,
+				B57D8D192C486CF500B55ABD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Plan WatchOS Watch App";
+			productName = "Plan WatchOS Watch App";
+			productReference = B57D8D1B2C486CF500B55ABD /* Plan WatchOS Watch App.app */;
+			productType = "com.apple.product-type.application";
+		};
 		B5E961472BFF93B9006FDDD1 /* Planner Bot */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B5E961562BFF93BA006FDDD1 /* Build configuration list for PBXNativeTarget "Planner Bot" */;
@@ -294,11 +375,13 @@
 				B5E961452BFF93B9006FDDD1 /* Frameworks */,
 				B5E961462BFF93B9006FDDD1 /* Resources */,
 				B5497DA82C39898F000BCB0F /* Embed Foundation Extensions */,
+				B57D8D292C486CF600B55ABD /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				B5497DA62C39898F000BCB0F /* PBXTargetDependency */,
+				B57D8D272C486CF600B55ABD /* PBXTargetDependency */,
 			);
 			name = "Planner Bot";
 			productName = "Planner Bot";
@@ -316,6 +399,9 @@
 				LastUpgradeCheck = 1540;
 				TargetAttributes = {
 					B5497D942C39898E000BCB0F = {
+						CreatedOnToolsVersion = 15.4;
+					};
+					B57D8D1A2C486CF500B55ABD = {
 						CreatedOnToolsVersion = 15.4;
 					};
 					B5E961472BFF93B9006FDDD1 = {
@@ -340,6 +426,7 @@
 			targets = (
 				B5E961472BFF93B9006FDDD1 /* Planner Bot */,
 				B5497D942C39898E000BCB0F /* Plan WidgetExtension */,
+				B57D8D1A2C486CF500B55ABD /* Plan WatchOS Watch App */,
 			);
 		};
 /* End PBXProject section */
@@ -350,6 +437,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5497DA32C39898F000BCB0F /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B57D8D192C486CF500B55ABD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B57D8D252C486CF600B55ABD /* Preview Assets.xcassets in Resources */,
+				B57D8D222C486CF600B55ABD /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -384,6 +480,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B57D8D172C486CF500B55ABD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B57D8D312C486D7000B55ABD /* Bot Service.swift in Sources */,
+				B57D8D2F2C486D6A00B55ABD /* Events.swift in Sources */,
+				B57D8D302C486D6D00B55ABD /* Keyvault Service.swift in Sources */,
+				B57D8D2E2C486D6800B55ABD /* Discord User.swift in Sources */,
+				B57D8D322C486D7400B55ABD /* Cached Image Service.swift in Sources */,
+				B57D8D202C486CF500B55ABD /* ContentView.swift in Sources */,
+				B57D8D1E2C486CF500B55ABD /* Plan_WatchOSApp.swift in Sources */,
+				B57D8D332C486D7B00B55ABD /* Constants.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B5E961442BFF93B9006FDDD1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -414,6 +525,11 @@
 			isa = PBXTargetDependency;
 			target = B5497D942C39898E000BCB0F /* Plan WidgetExtension */;
 			targetProxy = B5497DA52C39898F000BCB0F /* PBXContainerItemProxy */;
+		};
+		B57D8D272C486CF600B55ABD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B57D8D1A2C486CF500B55ABD /* Plan WatchOS Watch App */;
+			targetProxy = B57D8D262C486CF600B55ABD /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -471,6 +587,68 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		B57D8D2A2C486CF600B55ABD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Plan WatchOS Watch App/Plan WatchOS Watch App.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Plan WatchOS Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = 6M38R97L4D;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Plan WatchOS";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = "zgamelogic.Planner-Bot";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "zgamelogic.Planner-Bot.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.5;
+			};
+			name = Debug;
+		};
+		B57D8D2B2C486CF600B55ABD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Plan WatchOS Watch App/Plan WatchOS Watch App.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Plan WatchOS Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = 6M38R97L4D;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Plan WatchOS";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = "zgamelogic.Planner-Bot";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "zgamelogic.Planner-Bot.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.5;
 			};
 			name = Release;
 		};
@@ -675,6 +853,15 @@
 			buildConfigurations = (
 				B5497DA92C39898F000BCB0F /* Debug */,
 				B5497DAA2C39898F000BCB0F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B57D8D2C2C486CF600B55ABD /* Build configuration list for PBXNativeTarget "Plan WatchOS Watch App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B57D8D2A2C486CF600B55ABD /* Debug */,
+				B57D8D2B2C486CF600B55ABD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

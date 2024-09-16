@@ -266,20 +266,22 @@ class ViewModel: ObservableObject {
         }
         if let auth = auth {
             BotService.relogin(auth: auth, deviceUUID: deviceUUID) { result in
-                switch(result) {
-                case .success(let data):
-                    DispatchGroup().notify(queue: .main) {
-                        self.auth = data
+                DispatchGroup().notify(queue: .main) {
+                    switch(result) {
+                    case .success(let data):
+                        DispatchGroup().notify(queue: .main) {
+                            self.auth = data
+                            self.loading.isFetchingAuth = false
+                            self.fetchServerUsers()
+                            self.fetchServerRoles()
+                            self.fetchUserEvents()
+                            self.websocketConnect()
+                        }
+                    case .failure(let error):
+                        self.auth = nil
                         self.loading.isFetchingAuth = false
-                        self.fetchServerUsers()
-                        self.fetchServerRoles()
-                        self.fetchUserEvents()
-                        self.websocketConnect()
+                        print("Unable to relogin \(error)")
                     }
-                case .failure(let error):
-                    self.auth = nil
-                    self.loading.isFetchingAuth = false
-                    print("Unable to relogin \(error)")
                 }
             }
         } else {

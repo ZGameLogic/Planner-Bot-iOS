@@ -75,9 +75,14 @@ struct Event: Codable, Identifiable, Comparable {
         
         let uid = auth.user.id
         let status = users.first{$0.id == uid}?.status
-        let planFilled = acceptedUsers.count >= count
+        var planFilled: Bool {
+            if(count == -1) {
+                return false
+            }
+            return acceptedUsers.count >= count
+        }
+        let planInfinite = count == -1
         let planNeedFillIn = users.contains{$0.isNeedFillIn}
-        
         let sendMessage = uid == authorId
         let deleteEvent = uid == authorId
         
@@ -98,7 +103,7 @@ struct Event: Codable, Identifiable, Comparable {
             fillin = planFilled && planNeedFillIn
         case .accepted:
             dropout = true
-            requestFillin = true
+            requestFillin = planInfinite ? false : true
         case .maybe:
             accept = !planFilled
             deny = !planFilled

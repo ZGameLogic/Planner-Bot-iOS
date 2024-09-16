@@ -36,7 +36,6 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         let tokenComponents = deviceToken.map { data in String(format: "%02.2hhx", data) }
         let deviceTokenString = tokenComponents.joined()
         token = deviceTokenString
-        print("Setting token: \(token)")
         Task {
             try await BotService.registrationEndpoint(token: token, device: KeyvaultService.getDeviceUUID())
         }
@@ -50,7 +49,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     func subscribeToNotifications() {
         let userNotificationCenter = UNUserNotificationCenter.current()
         userNotificationCenter.requestAuthorization(options: [.alert, .sound, .badge]) { (granted, error) in
-            print("Permission granted: \(granted)")
+            
         }
     }
     
