@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import WebKit
+@preconcurrency import WebKit
 
 struct LoginView: View {
     @State private var webViewNavigation = WebViewNavigation()
