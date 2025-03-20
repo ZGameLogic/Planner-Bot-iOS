@@ -19,7 +19,13 @@ struct EventTimelineEntry: TimelineEntry {
     init(date: Date, events: [Event], auth: DiscordAuth?) {
         self.date = date
         self.events = events
-        let eventss = events.filter{$0.authorId == auth?.user.id ?? 0 || $0.acceptedUsers.contains{user in user.id == auth?.user.id ?? 0}}.sorted(by: <).filter{Calendar.current.isDateInToday($0.startTime)}
+        let eventss = events.filter{$0.authorId == auth?.user.id ?? 0 || $0.acceptedUsers.contains{user in user.id == auth?.user.id ?? 0}}.sorted(by: <).filter{ e in
+            if let startTime = e.startTime {
+                return Calendar.current.isDateInToday(startTime)
+            } else {
+                return false
+            }
+        }
         if(eventss.isEmpty){event = nil} else {event = eventss[0]}
         self.auth = auth
         let result = BotService.fetchDiscordServerUsersSyncronous()
@@ -65,7 +71,7 @@ struct EventTimelineEntry: TimelineEntry {
         
         for event in events {
             // Extract only the day part of the startTime
-            let eventDate = calendar.startOfDay(for: event.startTime)
+            let eventDate = calendar.startOfDay(for: event.startTime!)
             
             // Group events by the extracted date
             if groupedEvents[eventDate] != nil {

@@ -98,7 +98,7 @@ struct Plan_WidgetEntryView : View {
                     } else if let event = event {
                         VStack(alignment: .leading){
                             Label(event.title, systemImage: "calendar")
-                            Label(toLocalDateTime(date: event.startTime), systemImage: "clock")
+                            Label(toLocalDateTime(date: event.startTime!), systemImage: "clock")
                             if(event.count != -1){
                                 Gauge(value: Double(event.acceptedUsers.count), in: 0...Double(event.count), label: {
                                     HStack {

@@ -10,7 +10,16 @@ import SwiftUI
 
 struct Event: Codable, Identifiable, Comparable {
     static func < (lhs: Event, rhs: Event) -> Bool {
-        lhs.startTime < rhs.startTime
+        switch (lhs.startTime, rhs.startTime) {
+           case (nil, nil):
+               return false
+           case (nil, _):
+               return false
+           case (_, nil):
+               return true
+           default:
+               return lhs.startTime! < rhs.startTime!
+        }
     }
     
     static func == (lhs: Event, rhs: Event) -> Bool {
@@ -20,7 +29,7 @@ struct Event: Codable, Identifiable, Comparable {
     let id: Int64
     let title: String
     let notes: String
-    let startTime: Date
+    let startTime: Date?
     let count: Int
     let authorId: Int64
     let users: [EventUser]
@@ -49,10 +58,14 @@ struct Event: Codable, Identifiable, Comparable {
         self.id = try container.decode(Int64.self, forKey: .id)
         self.title = try container.decode(String.self, forKey: .title)
         self.notes = try container.decode(String.self, forKey: .notes)
-        let dateString = try container.decode(String.self, forKey: .startTime)
-        let dateFormatter = ISO8601DateFormatter()
-        dateFormatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
-        self.startTime = dateFormatter.date(from: dateString)!
+        let dateString = try container.decodeIfPresent(String.self, forKey: .startTime)
+        if let dateString = dateString {
+            let dateFormatter = ISO8601DateFormatter()
+            dateFormatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+            self.startTime = dateFormatter.date(from: dateString)!
+        } else {
+            self.startTime = nil
+        }
         self.count = try container.decode(Int.self, forKey: .count)
         self.authorId = try container.decode(Int64.self, forKey: .authorId)
         self.users = try container.decode([EventUser].self, forKey: .users)

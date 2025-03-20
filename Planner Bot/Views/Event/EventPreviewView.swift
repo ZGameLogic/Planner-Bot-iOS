@@ -65,7 +65,11 @@ struct EventPreviewView: View {
                     authorListView(viewModel.getUserById(userId: event.authorId))
                     Text(viewModel.getUserById(userId: event.authorId)?.username ?? "Unknown")
                 }.frame(height: 0).padding([.bottom], 6)
-                Label(toLocalTime(date: event.startTime), systemImage: "clock")
+                if let startTime = event.startTime{
+                    Label(toLocalTime(date: startTime), systemImage: "clock")
+                } else {
+                    Label("Poll", systemImage: "clock")
+                }
                 if(!event.notes.isEmpty){
                     Label(event.notes, systemImage: "note.text")
                 }
