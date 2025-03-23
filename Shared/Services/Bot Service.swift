@@ -10,7 +10,7 @@ struct BotService {
     #if targetEnvironment(simulator)
     static let BASE_URL = "http://localhost:2001"
     #else
-    static let BASE_URL = "https://zgamelogic.com:2000"
+    static let BASE_URL = "https://discord.zgamelogic.com"
     #endif
     
     static func fetchUserEvents(token: String, device: String, completion: @escaping (Result<[Event], Error>) -> Void) {
