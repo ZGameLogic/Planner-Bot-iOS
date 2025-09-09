@@ -71,13 +71,15 @@ struct EventTimelineEntry: TimelineEntry {
         
         for event in events {
             // Extract only the day part of the startTime
-            let eventDate = calendar.startOfDay(for: event.startTime!)
-            
-            // Group events by the extracted date
-            if groupedEvents[eventDate] != nil {
-                groupedEvents[eventDate]?.append(event)
-            } else {
-                groupedEvents[eventDate] = [event]
+            if let startTime = event.startTime{
+                let eventDate = calendar.startOfDay(for: startTime)
+                
+                // Group events by the extracted date
+                if groupedEvents[eventDate] != nil {
+                    groupedEvents[eventDate]?.append(event)
+                } else {
+                    groupedEvents[eventDate] = [event]
+                }
             }
         }
         
