@@ -8,7 +8,7 @@
 import Foundation
 struct BotService {
     #if targetEnvironment(simulator)
-    static let BASE_URL = "http://localhost:2001"
+    static let BASE_URL = "http://localhost:8080"
     #else
     static let BASE_URL = "https://discord.zgamelogic.com"
     #endif
@@ -372,15 +372,13 @@ struct BotService {
 
 struct User: Codable {
     let locale: String
-    let verified: Bool
     let username: String
     let global_name: String
     let avatar: String
     let id: Int64
     
-    init(locale: String, verified: Bool, username: String, global_name: String, avatar: String, id: Int64) {
+    init(locale: String, username: String, global_name: String, avatar: String, id: Int64) {
         self.locale = locale
-        self.verified = verified
         self.username = username
         self.global_name = global_name
         self.avatar = avatar
@@ -390,7 +388,6 @@ struct User: Codable {
     init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.locale = try container.decode(String.self, forKey: .locale)
-        self.verified = try container.decode(Bool.self, forKey: .verified)
         self.username = try container.decode(String.self, forKey: .username)
         self.global_name = try container.decode(String.self, forKey: .global_name)
         self.avatar = try container.decode(String.self, forKey: .avatar)

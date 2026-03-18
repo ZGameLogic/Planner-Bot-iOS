@@ -192,9 +192,9 @@ struct Plan_Widget: Widget {
             EventUser(id: 369303799581507585, status: .accepted, isNeedFillIn: false),
             EventUser(id: 262458179563159563, status: .accepted, isNeedFillIn: false)
         ])
-    ], auth: DiscordAuth(user: User(locale: "", verified: true, username: "zabory", global_name: "zabory", avatar: "", id: 232675572772372481), token: Token(token_type: "", access_token: "", expires_in: 3, refresh_token: "", scope: "")))
+    ], auth: DiscordAuth(user: User(locale: "", username: "zabory", global_name: "zabory", avatar: "", id: 232675572772372481), token: Token(token_type: "", access_token: "", expires_in: 3, refresh_token: "", scope: "")))
     EventTimelineEntry(date: .now, events: [], auth: nil)
-    EventTimelineEntry(date: .now, events: [], auth: DiscordAuth(user: User(locale: "", verified: true, username: "zabory", global_name: "zabory", avatar: "", id: 1), token: Token(token_type: "", access_token: "", expires_in: 3, refresh_token: "", scope: "")))
+    EventTimelineEntry(date: .now, events: [], auth: DiscordAuth(user: User(locale: "", username: "zabory", global_name: "zabory", avatar: "", id: 1), token: Token(token_type: "", access_token: "", expires_in: 3, refresh_token: "", scope: "")))
 }
 
 extension Color {

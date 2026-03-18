@@ -393,7 +393,7 @@ struct EventPreviewSkeletonView: View {
             EventUser(id: 5, status: .maybe, isNeedFillIn: false),
         ])
     ), showUsers: true).environmentObject(ViewModel(
-        auth: DiscordAuth(user: User(locale: "", verified: true, username: "zabory", global_name: "zabory", avatar: "", id: 123456789), token: Token(token_type: "", access_token: "token", expires_in: 9999999, refresh_token: "refresh", scope: "local")),
+        auth: DiscordAuth(user: User(locale: "", username: "zabory", global_name: "zabory", avatar: "", id: 123456789), token: Token(token_type: "", access_token: "token", expires_in: 9999999, refresh_token: "refresh", scope: "local")),
         discordUserProfiles: [
             DiscordUserProfile(id: 1, username: "user 1", avatar: nil),
             DiscordUserProfile(id: 2, username: "user 2", avatar: ""),
@@ -416,7 +416,7 @@ struct EventPreviewSkeletonView: View {
             EventUser(id: 5, status: .maybe, isNeedFillIn: false),
         ])
     ), showUsers: true, pillEnabled: true).environmentObject(ViewModel(
-        auth: DiscordAuth(user: User(locale: "", verified: true, username: "zabory", global_name: "zabory", avatar: "", id: 123456789), token: Token(token_type: "", access_token: "token", expires_in: 9999999, refresh_token: "refresh", scope: "local")),
+        auth: DiscordAuth(user: User(locale: "", username: "zabory", global_name: "zabory", avatar: "", id: 123456789), token: Token(token_type: "", access_token: "token", expires_in: 9999999, refresh_token: "refresh", scope: "local")),
         discordUserProfiles: [
             DiscordUserProfile(id: 1, username: "user 1", avatar: nil),
             DiscordUserProfile(id: 2, username: "user 2", avatar: ""),
